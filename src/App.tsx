@@ -1,26 +1,18 @@
 import React from 'react';
-import logo from './assets/logo.svg';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Callback from './services/spotify.login.service';
+import Home from "./pages/home";
 import './styles/App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+const App: React.FC = () => {
+  return(
+    <Router>
+      <Routes>
+        <Route path="/callback" Component={Callback} />
+        <Route path="/" Component={Home}/>
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

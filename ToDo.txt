@@ -1,0 +1,9 @@
+To Do:
+Implementar un servidor IS A MUST, nuevo proyecto de backend usando node?
+Diseño de la página
+
+----------
+
+Creo que tengo que empezar un proyecto de servidor... por ahi voy a empezar... 
+Cuanto me costará publicar este proyecto... ? 
+

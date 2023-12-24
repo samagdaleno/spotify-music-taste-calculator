@@ -11,7 +11,7 @@ const SpotifyAuth: React.FC = () => {
             const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID!; 
             const redirectUri = process.env.REACT_APP_SPOTIFY_REDIRECT_URI!;
 
-            const scope = 'user-read-private user-read-email';
+            const scope = 'user-read-private user-read-email user-library-read';
             const authUrl = new URL("https://accounts.spotify.com/authorize")
 
             const params =  {

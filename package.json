@@ -59,6 +59,7 @@
   },
   "devDependencies": {
     "@types/babel__core": "^7.20.5",
+    "depcheck": "^1.4.7",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4",
     "webpack-node-externals": "^3.0.0"

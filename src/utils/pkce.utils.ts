@@ -1,6 +1,4 @@
 class PKCEUtils {
-
-    // Generate a random string with a given length
     private static generateRandomString(length: number): string {
       const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
       let result = '';
@@ -10,8 +8,7 @@ class PKCEUtils {
       }
       return result;
     }
-  
-    // Generate a PKCE code verifier
+    
     public static generateCodeVerifier(): string {
       const codeVerifierLength = 64;
       return this.generateRandomString(codeVerifierLength);

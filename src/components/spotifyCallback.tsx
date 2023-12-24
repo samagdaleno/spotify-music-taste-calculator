@@ -8,12 +8,12 @@ const SpotifyCallback: React.FC = () => {
     const handleCallback = async () => {
       console.log("Callback");
       const urlParams = new URLSearchParams(window.location.search);
-      let code = urlParams.get('code')!;
+      const code =`${urlParams.get('code')}`;
 
-      let codeVerifier = localStorage.getItem('code_verifier')!;
+      const codeVerifier = `${localStorage.getItem('code_verifier')}`;
       const tokenUrl = 'https://accounts.spotify.com/api/token';
-      const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID!;
-      const redirectUri = process.env.REACT_APP_SPOTIFY_REDIRECT_URI!;
+      const clientId = `${process.env.REACT_APP_SPOTIFY_CLIENT_ID}`;
+      const redirectUri = `${process.env.REACT_APP_SPOTIFY_REDIRECT_URI}`;
 
       const payload = {
         method: 'POST' as const,

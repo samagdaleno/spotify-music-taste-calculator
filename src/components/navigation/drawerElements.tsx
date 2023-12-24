@@ -1,3 +1,4 @@
+import React from 'react'; 
 import { Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import MailIcon from '@mui/icons-material/Mail';
@@ -42,6 +43,6 @@ function DrawerElements ({navigationItems}:DrawerProps) {
       </List>
     </div>
   );
-};
+}
 
 export default DrawerElements;

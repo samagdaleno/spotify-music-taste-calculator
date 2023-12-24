@@ -2,13 +2,13 @@ import axios from 'axios';
 
 export const getRefreshToken = async (): Promise<void> => {
   try {
-    const refreshToken = localStorage.getItem('refresh_token');
+    const refreshToken = `${localStorage.getItem('refresh_token')}`;
     const url = 'https://accounts.spotify.com/api/token';
-    const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID!;
+    const clientId = `${process.env.REACT_APP_SPOTIFY_CLIENT_ID}`;
 
     const payload = new URLSearchParams({
       grant_type: 'refresh_token',
-      refresh_token: refreshToken!,
+      refresh_token: refreshToken,
       client_id: clientId,
     });
 

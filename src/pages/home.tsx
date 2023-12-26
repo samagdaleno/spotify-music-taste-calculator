@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import { getSavedTracks } from "../services/spotify.api.service";
+import { getSavedTracks, getTopTracks } from "../services/spotify.api.service";
 import { getRefreshToken } from "../services/token.service";
 
 const Home: React.FC = () => {
@@ -12,12 +12,11 @@ const Home: React.FC = () => {
         const accessToken = localStorage.getItem('access_token');
         try {
             if (accessToken) {
-                const tracks = await getSavedTracks(accessToken);
+                const tracks = await getTopTracks(accessToken);
                 setSavedTracks(tracks);
                 console.log(tracks);
             }
         } catch (error) {
-            // Handle error
             console.error('Error getting saved tracks:', error);
         }
     };

@@ -1,14 +1,7 @@
-// spotifyService.ts
 import axios from 'axios';
+import Track from '../interfaces/spotify/track';
 
 const SPOTIFY_API_BASE_URL = 'https://api.spotify.com/v1';
-
-interface Track {
-  name: string;
-  artist: string;
-  album: string;
-  imageUrl: string;
-}
 
 const getTopTracks = async (accessToken: string): Promise<Track[]> => {
   try {
@@ -16,13 +9,21 @@ const getTopTracks = async (accessToken: string): Promise<Track[]> => {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
+      params: {
+        time_range: "long_term",
+        limit:20,
+      },
     });
 
+    console.log('response', response);
+
     const tracks: Track[] = response.data.items.map((item: any) => ({
+      id: item.id,
       name: item.name,
       artist: item.artists[0].name,
       album: item.album.name,
       imageUrl: item.album.images[0].url,
+      popularity: item.popularity,
     }));
 
     return tracks;

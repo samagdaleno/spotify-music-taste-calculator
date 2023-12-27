@@ -1,5 +1,8 @@
+import { Box, CircularProgress } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getToken } from '../services/token.service';
+import { setTopTracksListData, setUserData } from '../services/spotify.api.service';
 
 const SpotifyCallback: React.FC = () => {
   const navigate = useNavigate();
@@ -7,42 +10,20 @@ const SpotifyCallback: React.FC = () => {
   useEffect(() => {
     const handleCallback = async () => {
       console.log("Callback");
-      const urlParams = new URLSearchParams(window.location.search);
-      const code =`${urlParams.get('code')}`;
+      await getToken();
+      await setUserData();
+      await setTopTracksListData();
 
-      const codeVerifier = `${localStorage.getItem('code_verifier')}`;
-      const tokenUrl = 'https://accounts.spotify.com/api/token';
-      const clientId = `${process.env.REACT_APP_SPOTIFY_CLIENT_ID}`;
-      const redirectUri = `${process.env.REACT_APP_SPOTIFY_REDIRECT_URI}`;
-
-      const payload = {
-        method: 'POST' as const,
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-          client_id: clientId,
-          grant_type: 'authorization_code',
-          code: code,
-          redirect_uri: redirectUri,
-          code_verifier: codeVerifier,
-        }),
-      };
-      try {
-        const response = await fetch(tokenUrl, payload);
-        const responseBody = await response.json();
-
-        localStorage.setItem('access_token', responseBody.access_token);
-        localStorage.setItem('refresh_token', responseBody.refresh_token);
-        navigate('/');
-      } catch (error) {
-        console.error('Error during callback:', error);
-      }
+      navigate('/');
     };
     handleCallback();
   }, [navigate]);
 
-  return <div>Processing...</div>;
+  return (
+    <Box sx={{ display: 'flex' }}>
+      <CircularProgress />
+    </Box>
+  );
 };
 
 export default SpotifyCallback;

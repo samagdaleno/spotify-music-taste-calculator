@@ -28,7 +28,7 @@ export const getToken = async (): Promise<string> => {
     });
 
     const responseBody = response.data;
-    setLSTokensData(responseBody.access_token, responseBody.refresh_token);
+    setLSTokensData(responseBody.access_token, responseBody.refresh_token, responseBody.expires_in);
     return responseBody.access_token;
   } catch (error) {
     console.error('Error during token call:', error);
@@ -55,7 +55,7 @@ export const getRefreshToken = async (): Promise<void> => {
       },
     });
 
-    setLSTokensData(response.data.access_token, response.data.refresh_token);
+    setLSTokensData(response.data.access_token, response.data.refresh_token, response.data.expires_in);
     // localStorage.setItem('access_token', response.data.access_token);
     // localStorage.setItem('refresh_token', response.data.refresh_token);
   } catch (error) {

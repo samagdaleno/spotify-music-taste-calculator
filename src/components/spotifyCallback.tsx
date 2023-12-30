@@ -2,7 +2,7 @@ import { Box, CircularProgress } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getToken } from '../services/token.service';
-import { setTopTracksListData, setUserData } from '../services/spotify.api.service';
+import { setTopTracksListData, setUserData } from '../services/spotify.service';
 
 const SpotifyCallback: React.FC = () => {
   const navigate = useNavigate();

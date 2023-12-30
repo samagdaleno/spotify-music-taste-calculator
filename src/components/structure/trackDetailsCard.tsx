@@ -11,16 +11,16 @@ export default function TrackDetailsCard({ track }: TrackDetailsCardProps) {
     return (
         <Box sx={{ width: "100%" }}>
           <Grid container>
-            <Grid xs={8}  md={3} justifyContent="center" alignItems="center" >
+            <Grid xs={8}  md={3} justifyContent="center" alignItems="center"  item={true} >
                 <img src={track.imageUrl} alt={track.name} height={100} width={100} />
             </Grid>
-            <Grid xs={6} md={4}>
+            <Grid xs={6} md={4} item={true}>
                 <h3>{track.name}</h3>
                 <h4>{track.artist}</h4>
                 <h5>{track.album}</h5>
                 <h5>{track.releaseDate}</h5>
             </Grid>
-            <Grid xs={3}>
+            <Grid xs={3} item={true}>
                 <h1>{track.popularity}</h1>
             </Grid>
           </Grid>

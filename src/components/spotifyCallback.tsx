@@ -2,17 +2,17 @@ import { Box, CircularProgress } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getToken } from '../services/token.service';
-import { setTopTracksListData, setUserData } from '../services/spotify.service';
+import { setTopTracksLists, setUserData, setTopTrackAnalytics } from '../services/spotify.service';
 
 const SpotifyCallback: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
     const handleCallback = async () => {
-      console.log("Callback");
       await getToken();
       await setUserData();
-      await setTopTracksListData();
+      await setTopTracksLists();
+      await setTopTrackAnalytics();
 
       navigate('/');
     };
@@ -20,7 +20,7 @@ const SpotifyCallback: React.FC = () => {
   }, [navigate]);
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', alignItems: 'center' }}>
       <CircularProgress />
     </Box>
   );

@@ -37,7 +37,7 @@ export const getToken = async (): Promise<string> => {
 }
 
 
-export const getRefreshToken = async (): Promise<void> => {
+export const getRefreshedToken = async (): Promise<void> => {
   try {
     const refreshToken = `${localStorage.getItem('refresh_token')}`;
     const url = 'https://accounts.spotify.com/api/token';
@@ -56,8 +56,6 @@ export const getRefreshToken = async (): Promise<void> => {
     });
 
     setLSTokensData(response.data.access_token, response.data.refresh_token, response.data.expires_in);
-    // localStorage.setItem('access_token', response.data.access_token);
-    // localStorage.setItem('refresh_token', response.data.refresh_token);
   } catch (error) {
     console.error('Error refreshing token:', error);
     throw error;

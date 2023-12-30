@@ -1,5 +1,7 @@
 import Track from "../interfaces/spotify/track";
+import TrackFeatures from "../interfaces/spotify/trackFeatures";
 import UserData from "../interfaces/user.data";
+import { getRefreshedToken } from "../services/token.service";
 
 
 export const setLSUserData = (userData: UserData) : void => {
@@ -15,8 +17,8 @@ export const setLSTokensData = (accessToken: string, refreshToken: string, token
     const seconds: number = parseInt(tokenExpiration, 10);
     const currentTime: Date = new Date();
     const expirationDate: Date = new Date(currentTime.getTime() + seconds * 1000);
+    console.log("Token Expiration Date:", expirationDate);
     console.log("Current Time:", currentTime);
-    console.log("Expiration Date:", expirationDate);
 
     localStorage.setItem('token_expiration', JSON.stringify(expirationDate));
 }
@@ -29,6 +31,10 @@ export const getLSTracksListData = (timeRange: string): Track[] => {
     return JSON.parse(localStorage.getItem(`${timeRange}_track_List`) || "[]");
 }
 
+export const setAverageTrackFeatures = (averageTrackFeatures: TrackFeatures, timeRange: string) => {
+    localStorage.setItem(`${timeRange}_average_track_features`, JSON.stringify(averageTrackFeatures));
+}
+
 export const getLSUserData = (): UserData => {
     return {
         id: JSON.parse(localStorage.getItem('user_id') || "undefined"),
@@ -37,11 +43,20 @@ export const getLSUserData = (): UserData => {
     };
 }
 
-export const getLSToken = (): string => {
+export const getLSToken = async (): Promise<string> => {
+    if (isTokenExpired()) {
+        await getRefreshedToken();
+    }
     return localStorage.getItem('access_token') || "undefined";
 }
 
-export const getLSTokenExpiration = (): Date => {
+const isTokenExpired = (): boolean => {
+    const expirationDate: Date = getLSTokenExpiration();
+    const currentTime: Date = new Date();
+    return expirationDate < currentTime;
+}
+
+const getLSTokenExpiration = (): Date => {
     return new Date(JSON.parse(localStorage.getItem('token_expiration') || "undefined"));
 }
 

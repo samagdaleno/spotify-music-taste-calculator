@@ -7,16 +7,63 @@ import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
 import Track from '../../interfaces/spotify/track';
 import './musicImageList.css';
-import { Tooltip } from '@mui/material';
+import { Tooltip, Typography, styled } from '@mui/material';
+import Filter1Icon from '@mui/icons-material/Filter1';
+import QueryStatsIcon from '@mui/icons-material/QueryStats';
+
+const StyledImageListItem = styled(ImageListItem)(({ theme }) => ({
+
+    [theme.breakpoints.down('sm')]: {
+        width: '100% !important', // Overrides inline-style
+        height: 100,
+    },
+    '&:hover, &.Mui-focusVisible': {
+      zIndex: 1,
+      '& .MuiImageBackdrop-root': {
+        opacity: 0.4,
+      },
+      '& .MuiImageMarked-root': {
+        opacity: 1,
+      },
+      '& .MuiTypography-root': {
+        border: '4px solid currentColor',
+      },
+    },
+}));
+
+const ImageMessage = styled('span')(({ theme }) => ({
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: theme.palette.common.white,
+    opacity: 0,
+    transition: theme.transitions.create('opacity'),
+  }));
+
+const ImageBackdrop = styled('span')(({ theme }) => ({
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    backgroundColor: theme.palette.common.black,
+    opacity: 0,
+    transition: theme.transitions.create('opacity'),
+  }))
 
 export default function TitlebarImageList({ trackList }: { trackList: Track[] }) {
     return (
-        <ImageList sx={{ width: 500, height: 450 }}>
-            {/* <ImageListItem key="Subheader" cols={2}>
+        <ImageList sx={{ width: "100%", height: 400 }}>
+            <ImageListItem key="Subheader" cols={2}>
                 <ListSubheader component="div">December</ListSubheader>
-            </ImageListItem> */}
+            </ImageListItem>
             {trackList.map((track) => (
-                <ImageListItem key={track.id} className='album-cover'>
+                <StyledImageListItem key={track.id} className='album-cover'>
                     <img
                         srcSet={`${track.imageUrl}?w=248&fit=crop&auto=format&dpr=2 2x`}
                         src={`${track.imageUrl}?w=248&fit=crop&auto=format`}
@@ -24,20 +71,29 @@ export default function TitlebarImageList({ trackList }: { trackList: Track[] })
                         loading="lazy"
                         onClick={() => { console.log(track.name) }}
                     />
+                    
+                    <ImageBackdrop className="MuiImageBackdrop-root" />
+                    <ImageMessage className="MuiImageMarked-root" >
+                        <Typography color={"white"}
+                            variant="subtitle1" component="span" sx={{ position: 'relative' }}>
+                            Click me, fucker
+                        </Typography>
+                    </ImageMessage>
+                    {/* <Tooltip title={track.album} placement='top'> */}
                     <ImageListItemBar
                         title={track.name}
                         subtitle={track.artist + " - " + track.album}
                         actionIcon={
-                            <Tooltip title="Delete">
                             <IconButton
                                 sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
                                 aria-label={`info about ${track.name}`}
                             >
-                                <InfoIcon />
-                            </IconButton></Tooltip>
+                                <QueryStatsIcon />
+                            </IconButton>
                         }
                     />
-                </ImageListItem>
+                    {/* </Tooltip> */}
+                </StyledImageListItem>
             ))}
         </ImageList>
     );

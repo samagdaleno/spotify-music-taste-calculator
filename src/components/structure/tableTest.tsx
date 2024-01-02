@@ -5,6 +5,7 @@ import { BarChart } from '@mui/x-charts/BarChart';
 import { getSingleTrackFeaturesById } from '../../services/spotify.service';
 import { Stack } from '@mui/material';
 import TitlebarImageList from '../showcase/musicImageList';
+import ButtonBaseDemo from '../imageButton';
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 130 },
@@ -46,13 +47,14 @@ export default function DataTable() { // TODO: Maybe pass in the time range as a
   return (
     <div style={{ height: 400, width: '100%' }}>
       <Stack direction="row" >
-        <BarChart
+        {/* <BarChart
           xAxis={[{ scaleType: 'band', data: ['group A', 'group B', 'group C'] }]}
           series={[{ data: [4, 3, 5] }, { data: [1, 6, 3] }, { data: [2, 5, 6] }]}
           width={500}
           height={450}
-        />
-        <TitlebarImageList trackList={trackList} />
+        /> */}
+        {/* <TitlebarImageList trackList={trackList} /> */}
+        <ButtonBaseDemo trackList={trackList} />
       </Stack>
       
       <DataGrid

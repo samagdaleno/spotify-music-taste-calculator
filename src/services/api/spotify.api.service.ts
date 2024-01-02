@@ -55,7 +55,23 @@ export const getTracksAudioFeatures = async (tracksIds: string[]): Promise<any> 
         console.error('Error getting tracks audio features:', error);
         throw error;
     }
-}
+};
+
+export const getSingleTrackAudioFeatures = async (trackId: string): Promise<any> => {
+    try {
+        const accessToken = await getLSToken();
+        const response = await axios.get(`${SPOTIFY_API_BASE_URL}/audio-features/${trackId}`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
+
+        return response.data;
+    } catch (error) {
+        console.error('Error getting single track audio features:', error);
+        throw error;
+    }
+};
 
 export const getSavedTracks = async (accessToken: string): Promise<any> => {
     try {

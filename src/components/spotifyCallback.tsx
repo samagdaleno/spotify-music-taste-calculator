@@ -20,7 +20,7 @@ const SpotifyCallback: React.FC = () => {
   }, [navigate]);
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'justify', alignItems: 'center' }}>
       <CircularProgress />
     </Box>
   );

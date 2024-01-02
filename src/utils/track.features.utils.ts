@@ -49,7 +49,6 @@ export const calculateAverageTrackFeatures = (tracksFeatures: TrackFeatures[]): 
         averageTrackFeatures.time_signature /= tracksFeatures.length;
         averageTrackFeatures.valence /= tracksFeatures.length;
 
-        console.log('Average track features:', averageTrackFeatures);
         return averageTrackFeatures;
     } catch (error) {
         console.error('Error calculating average track features:', error);

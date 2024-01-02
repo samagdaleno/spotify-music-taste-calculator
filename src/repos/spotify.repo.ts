@@ -35,6 +35,10 @@ export const setAverageTrackFeatures = (averageTrackFeatures: TrackFeatures, tim
     localStorage.setItem(`${timeRange}_average_track_features`, JSON.stringify(averageTrackFeatures));
 }
 
+export const getAverageTrackFeatures = (timeRange: string): TrackFeatures => {
+    return JSON.parse(localStorage.getItem(`${timeRange}_average_track_features`) || "{}");
+}
+
 export const getLSUserData = (): UserData => {
     return {
         id: JSON.parse(localStorage.getItem('user_id') || "undefined"),

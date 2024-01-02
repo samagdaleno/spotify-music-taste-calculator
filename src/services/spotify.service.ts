@@ -1,8 +1,9 @@
 import Track from '../interfaces/spotify/track'; // TODO: Maybe i shouldn't be importing this here ? 
+import TrackFeatures from '../interfaces/spotify/trackFeatures';
 import UserData from '../interfaces/user.data'; // TODO: Maybe i shouldn't be importing this here ? 
 import { setLSTrackListData, setLSUserData, setAverageTrackFeatures, getLSTracksListData } from '../repos/spotify.repo';
 import { calculateAverageTrackFeatures } from '../utils/track.features.utils';
-import { getUserData, getTopTracks, getTracksAudioFeatures } from './api/spotify.api.service';
+import { getUserData, getTopTracks, getTracksAudioFeatures, getSingleTrackAudioFeatures } from './api/spotify.api.service';
 
 export const setUserData = async (): Promise<void> => {
   try {
@@ -44,11 +45,8 @@ export const setTopTrackAnalytics = async (): Promise<void> => {
   const tracksMediumTermFeatures = await getTracksAudioFeatures(tracksMediumTermIds);
   const tracksLongTermFeatures = await getTracksAudioFeatures(tracksLongTermIds);
   
-  console.log('Calculating average short term track features...');
   const averageTrackFeaturesShortTerm = calculateAverageTrackFeatures(tracksShortTermFeatures.audio_features);
-  console.log('Calculating average medium term track features...');
   const averageTrackFeaturesMediumTerm = calculateAverageTrackFeatures(tracksMediumTermFeatures.audio_features);
-  console.log('Calculating average long term track features...');
   const averageTrackFeaturesLongTerm = calculateAverageTrackFeatures(tracksLongTermFeatures.audio_features);
 
   setAverageTrackFeatures(averageTrackFeaturesShortTerm, 'short_term');
@@ -56,9 +54,32 @@ export const setTopTrackAnalytics = async (): Promise<void> => {
   setAverageTrackFeatures(averageTrackFeaturesLongTerm, 'long_term');
 }
 
+export const getSingleTrackFeaturesById = async(trackId : string): Promise<TrackFeatures> => {
+  const trackFeaturesResponse = await getSingleTrackAudioFeatures(trackId);
+  const trackFeatures: TrackFeatures = { // TODO: Get this mapper logic out of here and find out where it belongs
+    acousticness: trackFeaturesResponse.acousticness,
+    danceability: trackFeaturesResponse.danceability,
+    duration_ms: trackFeaturesResponse.duration_ms,
+    energy: trackFeaturesResponse.energy,
+    id: trackFeaturesResponse.id,
+    instrumentalness: trackFeaturesResponse.instrumentalness,
+    key: trackFeaturesResponse.key,
+    liveness: trackFeaturesResponse.liveness,
+    loudness: trackFeaturesResponse.loudness,
+    mode: trackFeaturesResponse.mode,
+    speechiness: trackFeaturesResponse.speechiness,
+    tempo: trackFeaturesResponse.tempo,
+    time_signature: trackFeaturesResponse.time_signature,
+    valence: trackFeaturesResponse.valence,
+  };
+  return trackFeatures;
+}
+
 const trackMapper = (tracksResponse: any): Track[] => { // TODO: Find out where to place mappers
   try {
+    let position = 1;
     const tracks: Track[] = tracksResponse.items.map((item: any) => ({
+      position: position++,
       id: item.id,
       name: item.name,
       artist: item.artists[0].name,

@@ -1,10 +1,11 @@
 import { Typography } from '@mui/material';
 import React from 'react';
+import DataTable from '../components/structure/tableTest';
 
 const About: React.FC = () => {
   return (
     <div>
-      <h1>About</h1>
+      {/* <h1>About</h1>
       <Typography paragraph align="center">
         What <b>THEY</b> don&apos;t want you to know...
       </Typography>
@@ -18,7 +19,8 @@ const About: React.FC = () => {
         choosing a pizza topping, Spotify&apos;s magical algorithms work behind the scenes, decoding the musical enigma that is you.
         <br />It&apos;s not about genres; it&apos;s about your unique, one-of-a-kind, genre-defying taste. Embrace the chaos, and let this Spotify
         Analyzer show you what you <b>*REALLY*</b> like.
-      </Typography>
+      </Typography> */}
+      <DataTable />
     </div>
   );
 };

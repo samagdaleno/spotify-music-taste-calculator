@@ -1,4 +1,5 @@
 export default interface Track {
+    position: number;
     id: string;
     name: string;
     artist: string;

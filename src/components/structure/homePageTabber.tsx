@@ -3,7 +3,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import CustomTabContainer from './tabContainer';
-import TrackDetailsList from './trackDetailsList';
+// import TrackDetailsList from './trackDetailsList';
 import { getLSTracksListData } from '../../repos/spotify.repo';
 import TitlebarImageList from '../showcase/musicImageList';
 
@@ -13,7 +13,7 @@ function a11yProps(index: number) {
       'aria-controls': `simple-tabpanel-${index}`,
     };
   }
-
+// TODO: Create multiple branches to try different project structures
 export default function HomePageTabber() { //Rename this to something more descriptive
     const [value, setValue] = React.useState(0);
     const longTermTrackList = getLSTracksListData("long_term"); //Add this to env variables  
@@ -26,7 +26,7 @@ export default function HomePageTabber() { //Rename this to something more descr
   
     return (
       <Box sx={{ width: '100%' }}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider', width: '100%' }}>
           <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" centered>
             <Tab label="Several Years" {...a11yProps(0)} />
             <Tab label="Last 6 Months" {...a11yProps(1)} />

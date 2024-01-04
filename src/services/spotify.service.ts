@@ -1,9 +1,10 @@
 import Track from '../interfaces/spotify/track'; // TODO: Maybe i shouldn't be importing this here ? 
-import TrackFeatures from '../interfaces/spotify/trackFeatures';
+import TrackDetails from '../interfaces/spotify/trackDetails';
 import UserData from '../interfaces/user.data'; // TODO: Maybe i shouldn't be importing this here ? 
-import { setLSTrackListData, setLSUserData, setAverageTrackFeatures, getLSTracksListData } from '../repos/spotify.repo';
+import { setLSTrackListData, setLSUserData, setLSAverageAudioFeatures, getLSTracksListData, getLSAverageAudioFeatures } from '../repos/spotify.repo';
 import { calculateAverageTrackFeatures } from '../utils/track.features.utils';
 import { getUserData, getTopTracks, getTracksAudioFeatures, getSingleTrackAudioFeatures } from './api/spotify.api.service';
+import { mapAudioFeaturesResponseToTrackFeatures } from './mappers/mapAudioFeaturesResponseToTrackFeatures ';
 
 export const setUserData = async (): Promise<void> => {
   try {
@@ -37,9 +38,9 @@ export const setTopTracksLists = async (): Promise<void> => {
 export const setTopTrackAnalytics = async (): Promise<void> => {
   console.log('Getting top tracks analytics...');
 
-  const tracksShortTermIds = getTrackListIds('short_term');
-  const tracksMediumTermIds = getTrackListIds('medium_term');
-  const tracksLongTermIds = getTrackListIds('long_term');
+  const tracksShortTermIds = getLSTrackListIds('short_term');
+  const tracksMediumTermIds = getLSTrackListIds('medium_term');
+  const tracksLongTermIds = getLSTrackListIds('long_term');
 
   const tracksShortTermFeatures = await getTracksAudioFeatures(tracksShortTermIds);
   const tracksMediumTermFeatures = await getTracksAudioFeatures(tracksMediumTermIds);
@@ -49,30 +50,22 @@ export const setTopTrackAnalytics = async (): Promise<void> => {
   const averageTrackFeaturesMediumTerm = calculateAverageTrackFeatures(tracksMediumTermFeatures.audio_features);
   const averageTrackFeaturesLongTerm = calculateAverageTrackFeatures(tracksLongTermFeatures.audio_features);
 
-  setAverageTrackFeatures(averageTrackFeaturesShortTerm, 'short_term');
-  setAverageTrackFeatures(averageTrackFeaturesMediumTerm, 'medium_term');
-  setAverageTrackFeatures(averageTrackFeaturesLongTerm, 'long_term');
+  setLSAverageAudioFeatures(averageTrackFeaturesShortTerm, 'short_term');
+  setLSAverageAudioFeatures(averageTrackFeaturesMediumTerm, 'medium_term');
+  setLSAverageAudioFeatures(averageTrackFeaturesLongTerm, 'long_term');
 }
 
-export const getSingleTrackFeaturesById = async(trackId : string): Promise<TrackFeatures> => {
-  const trackFeaturesResponse = await getSingleTrackAudioFeatures(trackId);
-  const trackFeatures: TrackFeatures = { // TODO: Get this mapper logic out of here and find out where it belongs
-    acousticness: trackFeaturesResponse.acousticness,
-    danceability: trackFeaturesResponse.danceability,
-    duration_ms: trackFeaturesResponse.duration_ms,
-    energy: trackFeaturesResponse.energy,
-    id: trackFeaturesResponse.id,
-    instrumentalness: trackFeaturesResponse.instrumentalness,
-    key: trackFeaturesResponse.key,
-    liveness: trackFeaturesResponse.liveness,
-    loudness: trackFeaturesResponse.loudness,
-    mode: trackFeaturesResponse.mode,
-    speechiness: trackFeaturesResponse.speechiness,
-    tempo: trackFeaturesResponse.tempo,
-    time_signature: trackFeaturesResponse.time_signature,
-    valence: trackFeaturesResponse.valence,
-  };
+export const getSingleTrackFeaturesById = async(trackId : string): Promise<TrackDetails> => {
+  // TODO: Error Handling
+  const auidoFeaturesResponse = await getSingleTrackAudioFeatures(trackId);
+  const trackFeatures=  mapAudioFeaturesResponseToTrackFeatures(auidoFeaturesResponse);
   return trackFeatures;
+}
+
+export const getAverageTrackFeatures = (timeRange: string): TrackDetails => {
+  const averageAudioFeaturesResponse = getLSAverageAudioFeatures(timeRange);
+  const averageTrackFeatures = mapAudioFeaturesResponseToTrackFeatures(averageAudioFeaturesResponse);
+  return averageTrackFeatures;
 }
 
 const trackMapper = (tracksResponse: any): Track[] => { // TODO: Find out where to place mappers
@@ -96,7 +89,7 @@ const trackMapper = (tracksResponse: any): Track[] => { // TODO: Find out where 
   }
 };
 
-const getTrackListIds = (timeRange: string): string[] => { // TODO: Find out where to place this
+const getLSTrackListIds = (timeRange: string): string[] => { // TODO: Find out where to place this
   const trackList: Track[] = getLSTracksListData(timeRange);
   return trackList.map((track: Track) => track.id);
 }

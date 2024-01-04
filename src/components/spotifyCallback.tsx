@@ -9,7 +9,7 @@ const SpotifyCallback: React.FC = () => {
 
   useEffect(() => {
     const handleCallback = async () => {
-      await getToken();
+      await getToken(); // TODO: This is calling the api service directly, should be calling the token service
       await setUserData();
       await setTopTracksLists();
       await setTopTrackAnalytics();

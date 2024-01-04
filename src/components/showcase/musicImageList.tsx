@@ -58,10 +58,8 @@ const ImageBackdrop = styled('span')(({ theme }) => ({
 
 export default function TitlebarImageList({ trackList }: { trackList: Track[] }) {
     return (
-        <ImageList sx={{ width: "100%", height: 400 }}>
-            <ImageListItem key="Subheader" cols={2}>
-                <ListSubheader component="div">December</ListSubheader>
-            </ImageListItem>
+        <ImageList sx={{ width: "100%", height:  "100%" }} cols={4}>
+            
             {trackList.map((track) => (
                 <StyledImageListItem key={track.id} className='album-cover'>
                     <img

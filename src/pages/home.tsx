@@ -2,19 +2,19 @@ import React, { useState } from "react";
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import { getRefreshedToken } from "../services/token.service";
-import { Box, CssBaseline, Link, Typography } from "@mui/material";
+import { Box, CssBaseline, Typography } from "@mui/material";
 import HomePageTabber from "../components/structure/homePageTabber";
 
 function Home(){
     const [accessToken, setAccessToken] = useState<string | null>(localStorage.getItem('access_token'));
 
     return (
-        <React.Fragment>
+        <div>
             <CssBaseline />
-            <Container maxWidth="sm" sx={{ display: 'flex',
+            {/* <Container maxWidth="sm" sx={{ display: 'flex',
                                            flexDirection: 'column',
                                            justifyContent: 'center',
-                                           alignItems: 'center' }}>
+                                           alignItems: 'center' }}> */}
                 <h1>Spotify Analyzer</h1>
                 {accessToken ?
                     <React.Fragment>
@@ -22,7 +22,7 @@ function Home(){
                         <Button variant="contained" onClick={getRefreshedToken}>Let the magic start!</Button>
                     </React.Fragment>
                     :
-                    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'justify', alignItems: 'center' }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'justify', alignItems: 'center',  width: '100%' }}>
                         {/* <Typography paragraph align="justify">
                             <b>YOU&apos;VE BEEN LIED TO!</b>  music genres don&apos;t exist.
                             Spotify doesn&apos;t bother with them, so why should you? Spotify
@@ -41,8 +41,8 @@ function Home(){
                         <Button variant="contained" href={"/login"}>Show me the truth</Button>
                     </Box>
                 }
-            </Container>
-        </React.Fragment>
+            {/* </Container> */}
+        </div>
     );
 }
 

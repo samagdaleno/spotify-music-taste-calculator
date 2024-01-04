@@ -1,5 +1,6 @@
+import AudioFeaturesResponse from "../interfaces/responses/audioFeaturesResponse";
 import Track from "../interfaces/spotify/track";
-import TrackFeatures from "../interfaces/spotify/trackFeatures";
+import TrackDetails from "../interfaces/spotify/trackDetails";
 import UserData from "../interfaces/user.data";
 import { getRefreshedToken } from "../services/token.service";
 
@@ -31,11 +32,11 @@ export const getLSTracksListData = (timeRange: string): Track[] => {
     return JSON.parse(localStorage.getItem(`${timeRange}_track_List`) || "[]");
 }
 
-export const setAverageTrackFeatures = (averageTrackFeatures: TrackFeatures, timeRange: string) => {
-    localStorage.setItem(`${timeRange}_average_track_features`, JSON.stringify(averageTrackFeatures));
+export const setLSAverageAudioFeatures = (averageAudioFeatures: AudioFeaturesResponse, timeRange: string) => { // TODO: WHAT THE FUCK ARE YOU DOING?
+    localStorage.setItem(`${timeRange}_average_track_features`, JSON.stringify(averageAudioFeatures));
 }
 
-export const getAverageTrackFeatures = (timeRange: string): TrackFeatures => {
+export const getLSAverageAudioFeatures = (timeRange: string): AudioFeaturesResponse => {
     return JSON.parse(localStorage.getItem(`${timeRange}_average_track_features`) || "{}");
 }
 

@@ -1,8 +1,9 @@
-import TrackFeatures from "../interfaces/spotify/trackFeatures";
+import AudioFeaturesResponse from "../interfaces/responses/audioFeaturesResponse";
+import TrackDetails from "../interfaces/spotify/trackDetails";
 
-export const calculateAverageTrackFeatures = (tracksFeatures: TrackFeatures[]): TrackFeatures => {
+export const calculateAverageTrackFeatures = (audioFeaturesResponse: AudioFeaturesResponse[]): AudioFeaturesResponse => {
     try {
-        const averageTrackFeatures: TrackFeatures = {
+        const averageTrackFeatures: AudioFeaturesResponse = {
             id: '',
             acousticness: 0,
             danceability: 0,
@@ -17,9 +18,13 @@ export const calculateAverageTrackFeatures = (tracksFeatures: TrackFeatures[]): 
             tempo: 0,
             time_signature: 0,
             valence: 0,
+            analysis_url: "",
+            track_href: "",
+            type: "",
+            uri: ""
         };
 
-        tracksFeatures.forEach((trackFeatures: TrackFeatures) => {
+        audioFeaturesResponse.forEach((trackFeatures: AudioFeaturesResponse) => {
             averageTrackFeatures.acousticness += trackFeatures.acousticness;
             averageTrackFeatures.danceability += trackFeatures.danceability;
             averageTrackFeatures.duration_ms += trackFeatures.duration_ms;
@@ -35,19 +40,19 @@ export const calculateAverageTrackFeatures = (tracksFeatures: TrackFeatures[]): 
             averageTrackFeatures.valence += trackFeatures.valence;
         });
 
-        averageTrackFeatures.acousticness /= tracksFeatures.length;
-        averageTrackFeatures.danceability /= tracksFeatures.length;
-        averageTrackFeatures.duration_ms /= tracksFeatures.length;
-        averageTrackFeatures.energy /= tracksFeatures.length;
-        averageTrackFeatures.instrumentalness /= tracksFeatures.length;
-        averageTrackFeatures.key /= tracksFeatures.length;
-        averageTrackFeatures.liveness /= tracksFeatures.length;
-        averageTrackFeatures.loudness /= tracksFeatures.length;
-        averageTrackFeatures.mode /= tracksFeatures.length;
-        averageTrackFeatures.speechiness /= tracksFeatures.length;
-        averageTrackFeatures.tempo /= tracksFeatures.length;
-        averageTrackFeatures.time_signature /= tracksFeatures.length;
-        averageTrackFeatures.valence /= tracksFeatures.length;
+        averageTrackFeatures.acousticness /= audioFeaturesResponse.length;
+        averageTrackFeatures.danceability /= audioFeaturesResponse.length;
+        averageTrackFeatures.duration_ms /= audioFeaturesResponse.length;
+        averageTrackFeatures.energy /= audioFeaturesResponse.length;
+        averageTrackFeatures.instrumentalness /= audioFeaturesResponse.length;
+        averageTrackFeatures.key /= audioFeaturesResponse.length;
+        averageTrackFeatures.liveness /= audioFeaturesResponse.length;
+        averageTrackFeatures.loudness /= audioFeaturesResponse.length;
+        averageTrackFeatures.mode /= audioFeaturesResponse.length;
+        averageTrackFeatures.speechiness /= audioFeaturesResponse.length;
+        averageTrackFeatures.tempo /= audioFeaturesResponse.length;
+        averageTrackFeatures.time_signature /= audioFeaturesResponse.length;
+        averageTrackFeatures.valence /= audioFeaturesResponse.length;
 
         return averageTrackFeatures;
     } catch (error) {

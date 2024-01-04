@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import CustomTabContainer from './tabContainer';
 // import TrackDetailsList from './trackDetailsList';
 import { getLSTracksListData } from '../../repos/spotify.repo';
-import TitlebarImageList from '../showcase/musicImageList';
+import TrackDetailsList from './trackDetailsList';
 
 function a11yProps(index: number) {
     return {
@@ -34,16 +34,16 @@ export default function HomePageTabber() { //Rename this to something more descr
           </Tabs>
         </Box>
         <CustomTabContainer value={value} index={0}>
-          <TitlebarImageList trackList={longTermTrackList} />
-          {/* <TrackDetailsList trackList={longTermTrackList} /> */}
+          {/* <TitlebarImageList trackList={longTermTrackList} /> */}
+          <TrackDetailsList trackList={longTermTrackList} />
         </CustomTabContainer>
         <CustomTabContainer value={value} index={1}>
-          <TitlebarImageList trackList={mediumTermTrackList} />
-          {/* <TrackDetailsList trackList={mediumTermTrackList} /> */}
+          {/* <TitlebarImageList trackList={mediumTermTrackList} /> */}
+          <TrackDetailsList trackList={mediumTermTrackList} />
         </CustomTabContainer>
         <CustomTabContainer value={value} index={2}>
-          <TitlebarImageList trackList={shortTermTrackList} />
-          {/* <TrackDetailsList trackList={shortTermTrackList} /> */}
+          {/* <TitlebarImageList trackList={shortTermTrackList} /> */}
+          <TrackDetailsList trackList={shortTermTrackList} />
         </CustomTabContainer>
       </Box>
     );

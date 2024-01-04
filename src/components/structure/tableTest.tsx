@@ -1,11 +1,7 @@
 import * as React from 'react';
 import { DataGrid, GridColumnMenu, GridColumnMenuProps, GridRowParams, GridRowSelectionModel } from '@mui/x-data-grid';
-import { getLSAverageAudioFeatures, getLSTracksListData } from '../../repos/spotify.repo';
-import { BarChart } from '@mui/x-charts/BarChart';
+import {  getLSTracksListData } from '../../repos/spotify.repo';
 import { getAverageTrackFeatures, getSingleTrackFeaturesById } from '../../services/spotify.service';
-import { Stack } from '@mui/material';
-import TitlebarImageList from '../showcase/musicImageList';
-import ButtonBaseDemo from '../imageButton';
 import TrackDetailsPanel from '../showcase/trackDetailsPanel';
 import TrackDetails from '../../interfaces/spotify/trackDetails';
 

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import PKCEUtils from "../utils/pkce.utils";
+import PKCEUtils from "../../utils/pkce.utils";
 
 const SpotifyAuth: React.FC = () => {
     useEffect(() => {

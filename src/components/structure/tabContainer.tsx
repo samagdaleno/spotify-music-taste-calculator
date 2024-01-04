@@ -15,7 +15,7 @@ export default function CustomTabContainer(props: TabPanelProps) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3, width: '100%' }}>
+        <Box sx={{ pt: 2, pb:2, width: '100%' }}>
           <Typography component={'span'} variant={'body2'}>{children}</Typography>
         </Box>
       )}

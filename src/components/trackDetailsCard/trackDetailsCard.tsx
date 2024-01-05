@@ -5,15 +5,18 @@ import Track from '../../interfaces/spotify/track';
 import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 import { StyledCardMedia } from './trackDetailsCard.styles';
 
-export default function TrackDetailsCard({ track }: {track : Track }) {
+export default function TrackDetailsCard({ track, onSelect }: {track : Track; onSelect: (trackId: string) => void }) {
   const [isClicked, setIsClicked] = useState(false);
-  const handleClick = ( selectedTrack: string ) => {
+
+  const handleClick = ( selectedTrack: Track ) => {
+    onSelect(selectedTrack.id);
     console.info(selectedTrack);   
     setIsClicked(true); 
     setTimeout(() => {
       setIsClicked(false);
     }, 350);
   };
+
   return (
     <Card sx={{ display: '-webkit-box', overflow: "auto" }}>
       <StyledCardMedia
@@ -24,7 +27,7 @@ export default function TrackDetailsCard({ track }: {track : Track }) {
         },
       }}
         image={track.imageUrl}
-        onClick={() => handleClick(track.name)}/>
+        onClick={() => handleClick(track)}/>
       <Box >
         <CardContent>
           <Typography component="div" variant="subtitle2">

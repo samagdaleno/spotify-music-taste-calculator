@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DataGrid, GridColumnMenu, GridColumnMenuProps, GridRowParams, GridRowSelectionModel } from '@mui/x-data-grid';
 import {  getLSTracksListData } from '../../repos/spotify.repo';
 import { getAverageTrackFeatures, getSingleTrackFeaturesById } from '../../services/spotify.service';
-import TrackDetailsPanel from '../showcase/trackDetailsPanel';
+import TrackFeaturesPanel from '../showcase/trackFeaturesPanel';
 import TrackDetails from '../../interfaces/spotify/trackDetails';
 
 const columns = [
@@ -55,8 +55,8 @@ export default function DataTable() { // TODO: Maybe pass in the time range as a
         {/* <ButtonBaseDemo trackList={trackList} /> */}
       {/* </Stack> */}
       {selectedTrackDetails.id ? 
-      <TrackDetailsPanel trackDetails={selectedTrackDetails}></TrackDetailsPanel> 
-      : <TrackDetailsPanel trackDetails={averageStats}></TrackDetailsPanel>}
+      <TrackFeaturesPanel trackDetails={selectedTrackDetails}></TrackFeaturesPanel> 
+      : <TrackFeaturesPanel trackDetails={averageStats}></TrackFeaturesPanel>}
       
       
       <DataGrid

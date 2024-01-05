@@ -7,7 +7,6 @@ import { CanvasRenderer } from 'echarts/renderers';
 
 // Importing necessary types for TypeScript
 import { EChartsOption } from 'echarts/types/dist/shared';
-import { EChartsType } from 'echarts/types/dist/echarts';
 import TrackDetails from '../../../interfaces/spotify/trackDetails';import { TooltipComponent } from 'echarts/components';
 
 

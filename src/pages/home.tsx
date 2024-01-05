@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
 import { getRefreshedToken } from "../services/token.service";
 import { Box, CssBaseline, Typography } from "@mui/material";
 import HomePageTabber from "../components/structure/homePageTabber";
 
 function Home(){
+    // eslint-disable-next-line
     const [accessToken, setAccessToken] = useState<string | null>(localStorage.getItem('access_token'));
 
     return (

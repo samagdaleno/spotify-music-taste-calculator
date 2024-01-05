@@ -4,6 +4,7 @@ import AudioFeaturesResponse from '../../interfaces/responses/audioFeaturesRespo
 
 const SPOTIFY_API_BASE_URL = 'https://api.spotify.com/v1';
 
+// eslint-disable-next-line
 export const getUserData = async (): Promise<any> => {
     try {
         const accessToken = await getLSToken();
@@ -20,6 +21,7 @@ export const getUserData = async (): Promise<any> => {
     }
 }
 
+// eslint-disable-next-line
 export const getTopTracks = async (timeRange: string): Promise<any> => {
     try {
         const accessToken = await getLSToken();
@@ -39,6 +41,7 @@ export const getTopTracks = async (timeRange: string): Promise<any> => {
     }
 };
 
+// eslint-disable-next-line
 export const getTracksAudioFeatures = async (tracksIds: string[]): Promise<any> => {
     try {
         const accessToken = await getLSToken();
@@ -73,6 +76,7 @@ export const getSingleTrackAudioFeatures = async (trackId: string): Promise<Audi
     }
 };
 
+// eslint-disable-next-line
 export const getSavedTracks = async (accessToken: string): Promise<any> => {
     try {
         const response = await axios.get(`${SPOTIFY_API_BASE_URL}/me/tracks`, {

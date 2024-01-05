@@ -1,11 +1,11 @@
 import React from 'react';
 import TrackDetails from '../../interfaces/spotify/trackDetails';
 import { Box, Stack, Typography } from '@mui/material';
-import { BarChart } from '@mui/x-charts/BarChart';
-import * as echarts from 'echarts';
+// import { BarChart } from '@mui/x-charts/BarChart';
+// import * as echarts from 'echarts';
 import NightingaleChart from './charts/nightingaleChart';
 
-type EChartsOption = echarts.EChartsOption;
+// type EChartsOption = echarts.EChartsOption;
 
 export default function TrackFeaturesPanel({ trackDetails } : { trackDetails: TrackDetails }) {
     return (

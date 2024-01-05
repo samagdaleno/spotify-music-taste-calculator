@@ -1,28 +1,43 @@
 // import { Typography } from '@mui/material';
-import React from 'react';
-import DataTable from '../components/structure/tableTest';
+import React, { useEffect } from 'react';
+import PKCEUtils from '../utils/pkce.utils';
 
 const About: React.FC = () => {
-  return (
-    <div>
-      {/* <h1>About</h1>
-      <Typography paragraph align="center">
-        What <b>THEY</b> don&apos;t want you to know...
-      </Typography>
-      <Typography paragraph align="justify">
-        Music genres, my friend, are like elusive unicorns—mythical, confusing,
-        and not really helping anyone.
-        <br />While you&apos;re out there wondering if that catchy tune
-        is indie electro-jazz with a hint of bubblegum pop, <b>Spotify</b> has cracked the code to your musical soul.
-        They refuse to rely on genres because, let&apos;s face it, music doesn&apos;t fit neatly into little boxes.
-        It&apos;s more like a rebellious cat that won&apos;t be confined. So, instead of asking you to pick a genre like you&apos;re
-        choosing a pizza topping, Spotify&apos;s magical algorithms work behind the scenes, decoding the musical enigma that is you.
-        <br />It&apos;s not about genres; it&apos;s about your unique, one-of-a-kind, genre-defying taste. Embrace the chaos, and let this Spotify
-        Analyzer show you what you <b>*REALLY*</b> like.
-      </Typography> */}
-      <DataTable />
-    </div>
-  );
+  useEffect(() => {
+    const authenticateSpotify = async () => {
+      const codeVerifier = PKCEUtils.generateCodeVerifier();
+      window.localStorage.setItem('code_verifier', codeVerifier);
+
+      const codeChallenge = await PKCEUtils.generateCodeChallenge(codeVerifier);
+      const clientId = `${process.env.REACT_APP_SPOTIFY_CLIENT_ID}`;
+      const redirectUri = `${process.env.REACT_APP_SPOTIFY_REDIRECT_URI}`;
+
+      const scope = `
+      user-read-private
+      user-read-email
+      user-library-read
+      user-top-read
+      `;
+      const authUrl = new URL("https://accounts.spotify.com/authorize")
+
+      const params = {
+        response_type: 'code',
+        client_id: clientId,
+        scope,
+        code_challenge_method: 'S256',
+        code_challenge: codeChallenge,
+        redirect_uri: redirectUri,
+      }
+
+      authUrl.search = new URLSearchParams(params).toString();
+
+      window.location.href = authUrl.toString();
+    };
+
+    authenticateSpotify();
+  }, []);
+
+  return <div>Redirecting to Spotify...</div>;
 };
 
 export default About;

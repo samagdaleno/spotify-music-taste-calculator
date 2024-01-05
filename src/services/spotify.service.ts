@@ -68,9 +68,10 @@ export const getAverageTrackFeatures = (timeRange: string): TrackDetails => {
   return averageTrackFeatures;
 }
 
+// eslint-disable-next-line
 const trackMapper = (tracksResponse: any): Track[] => { // TODO: Find out where to place mappers
   try {
-    let position = 1;
+    let position = 1;// eslint-disable-next-line
     const tracks: Track[] = tracksResponse.items.map((item: any) => ({
       position: position++,
       id: item.id,

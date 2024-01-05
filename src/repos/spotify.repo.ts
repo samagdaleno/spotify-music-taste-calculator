@@ -1,6 +1,6 @@
 import AudioFeaturesResponse from "../interfaces/responses/audioFeaturesResponse";
 import Track from "../interfaces/spotify/track";
-import TrackDetails from "../interfaces/spotify/trackDetails";
+// import TrackDetails from "../interfaces/spotify/trackDetails";
 import UserData from "../interfaces/user.data";
 import { getRefreshedToken } from "../services/token.service";
 

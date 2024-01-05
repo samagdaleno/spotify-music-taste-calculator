@@ -1,5 +1,5 @@
 import AudioFeaturesResponse from "../interfaces/responses/audioFeaturesResponse";
-import TrackDetails from "../interfaces/spotify/trackDetails";
+// import TrackDetails from "../interfaces/spotify/trackDetails";
 
 export const calculateAverageTrackFeatures = (audioFeaturesResponse: AudioFeaturesResponse[]): AudioFeaturesResponse => {
     try {

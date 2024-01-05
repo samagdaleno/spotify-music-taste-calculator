@@ -2,8 +2,8 @@ import * as React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from "./pages/home";
 import About from "./pages/about";
-import SpotifyCallback from './components/spotifyCallback';
-import SpotifyAuth from './components/spotifyAuth';
+import SpotifyCallback from './components/navigation/spotifyCallback';
+import SpotifyAuth from './components/navigation/spotifyAuth';
 import './styles/App.css';
 import Layout from './components/layout/layout';
 

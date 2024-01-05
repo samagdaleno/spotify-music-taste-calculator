@@ -1,6 +1,43 @@
 import axios from 'axios';
+import { setLSTokensData } from '../repos/spotify.repo';
 
-export const getRefreshToken = async (): Promise<void> => {
+export const getToken = async (): Promise<string> => {
+  console.log("Getting token...");
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const code = urlParams.get('code');
+
+  const codeVerifier = localStorage.getItem('code_verifier');
+  const tokenUrl = 'https://accounts.spotify.com/api/token';
+  const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID || '';
+  const redirectUri = process.env.REACT_APP_SPOTIFY_REDIRECT_URI || '';
+
+  const payload = new URLSearchParams({
+    client_id: clientId,
+    grant_type: 'authorization_code',
+    code: code || '',
+    redirect_uri: redirectUri,
+    code_verifier: codeVerifier || '',
+  });
+
+  try {
+    const response = await axios.post(tokenUrl, payload, {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+
+    const responseBody = response.data;
+    setLSTokensData(responseBody.access_token, responseBody.refresh_token, responseBody.expires_in);
+    return responseBody.access_token;
+  } catch (error) {
+    console.error('Error during token call:', error);
+  }
+  return '';
+}
+
+
+export const getRefreshedToken = async (): Promise<void> => {
   try {
     const refreshToken = `${localStorage.getItem('refresh_token')}`;
     const url = 'https://accounts.spotify.com/api/token';
@@ -18,8 +55,7 @@ export const getRefreshToken = async (): Promise<void> => {
       },
     });
 
-    localStorage.setItem('access_token', response.data.access_token);
-    localStorage.setItem('refresh_token', response.data.refresh_token);
+    setLSTokensData(response.data.access_token, response.data.refresh_token, response.data.expires_in);
   } catch (error) {
     console.error('Error refreshing token:', error);
     throw error;

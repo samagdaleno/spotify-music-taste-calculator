@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import { getRefreshedToken } from "../services/token.service";
 import { Box, CssBaseline, Typography } from "@mui/material";
 import HomePageTabber from "../components/structure/homePageTabber";
+import { Link } from "react-router-dom";
 
 function Home(){
     // eslint-disable-next-line
@@ -38,7 +39,7 @@ function Home(){
                             to witness how Spotify decodes the rhythm of your soul. Ready for the 
                             unfiltered truth? 
                         </Typography>
-                        <Button variant="contained" href={"/login"}>Show me the truth</Button>
+                        <Button component={Link} to="/login" variant="contained">Show me the truth</Button>
                     </Box>
                 }
             {/* </Container> */}

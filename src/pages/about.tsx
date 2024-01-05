@@ -3,6 +3,10 @@ import React, { useEffect } from 'react';
 import PKCEUtils from '../utils/pkce.utils';
 
 const About: React.FC = () => {
+  console.log("About.tsx");
+  console.log("FUCK")
+  console.log(process.env.REACT_APP_SPOTIFY_REDIRECT_URI);
+  console.log(process.env.REACT_APP_SPOTIFY_CLIENT_ID);
   useEffect(() => {
     const authenticateSpotify = async () => {
       const codeVerifier = PKCEUtils.generateCodeVerifier();

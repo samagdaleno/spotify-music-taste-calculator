@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import TrackDetailsList from '../structure/trackDetailsList';
 import Track from '../../interfaces/spotify/track';
 import TrackDetails from '../../interfaces/spotify/trackDetails';
-import TrackFeaturesPanel from '../showcase/trackFeaturesPanel';
+// import TrackFeaturesPanel from '../showcase/trackFeaturesPanel';
 import { getAverageTrackFeatures, getSingleTrackFeaturesById } from '../../services/spotify.service';
 
 export default function TrackAnalysisTab({ trackList }: { trackList: Track[] }) {
     const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null);
+    //eslint-disable-next-line
     const [selectedTrackDetails, setSelectedTrackDetails] = useState<TrackDetails | null>(null);
+    //eslint-disable-next-line
     const [averageStats, setAverageStats] = useState<TrackDetails | null>(null);
 
     const handleTrackSelection = (trackId: string) => {

@@ -36,11 +36,11 @@ export default function TrackAnalysisTab({ trackList }: { trackList: Track[] }) 
 
     return (
         <div>
-            {selectedTrackDetails ? (
+            {/* {selectedTrackDetails ? (
                 <TrackFeaturesPanel trackDetails={selectedTrackDetails} />
             ) : (
                 averageStats && <TrackFeaturesPanel trackDetails={averageStats} />
-            )}
+            )} */}
 
             <TrackDetailsList trackList={trackList} onSelect={handleTrackSelection} />
         </div>

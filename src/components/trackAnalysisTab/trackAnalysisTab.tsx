@@ -6,12 +6,14 @@ import TrackFeaturesPanel from '../showcase/trackFeaturesPanel';
 import { getAverageTrackFeatures, getSingleTrackFeaturesById } from '../../services/spotify.service';
 import { Divider } from '@mui/material';
 
+
 export default function TrackAnalysisTab({ trackList, timeframe }: { trackList: Track[], timeframe: string }) {
     const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null);
     const [selectedTrackDetails, setSelectedTrackDetails] = useState<TrackDetails | null>(null);
     const [averageStats, setAverageStats] = useState<TrackDetails | null>(null);
 
     const handleTrackSelection = (trackId: string) => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         setSelectedTrackId(trackId);
     };
 

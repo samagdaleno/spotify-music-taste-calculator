@@ -5,7 +5,6 @@ import GaugeRingChart from './charts/gaugeRingChart';
 import BoltIcon from '@mui/icons-material/Bolt';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import Divider from '@mui/material/Divider';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';

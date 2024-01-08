@@ -54,9 +54,9 @@ export default function DataTable() { // TODO: Maybe pass in the time range as a
         {/* <TitlebarImageList trackList={trackList} /> */}
         {/* <ButtonBaseDemo trackList={trackList} /> */}
       {/* </Stack> */}
-      {selectedTrackDetails.id ? 
+      {/* {selectedTrackDetails.id ? 
       <TrackFeaturesPanel trackDetails={selectedTrackDetails}></TrackFeaturesPanel> 
-      : <TrackFeaturesPanel trackDetails={averageStats}></TrackFeaturesPanel>}
+      : <TrackFeaturesPanel trackDetails={averageStats}></TrackFeaturesPanel>} */}
       
       
       <DataGrid

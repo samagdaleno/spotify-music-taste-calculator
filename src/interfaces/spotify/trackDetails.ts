@@ -1,5 +1,9 @@
 export default interface TrackDetails {
-    id: string; // TODO: isn't it trackId ?	
+    track_id: string; // TODO: isn't it trackId ?
+    track_name: string; 
+    track_artist: string;
+    track_album: string;
+    track_image_url: string;	
     // numeric
     danceability: number; //0.585
     energy: number; // 0.842

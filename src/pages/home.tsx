@@ -16,7 +16,7 @@ function Home(){
                                            flexDirection: 'column',
                                            justifyContent: 'center',
                                            alignItems: 'center' }}> */}
-                <h1>Spotify Analyzer</h1>
+                {/* <h1>Spotify Analyzer</h1> */}
                 {accessToken ?
                     <React.Fragment>
                         <HomePageTabber />

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
-import { Card, CardActionArea, CardContent, IconButton, Typography } from '@mui/material';
+import { Card, CardActionArea, CardContent, Typography } from '@mui/material';
 import Track from '../../interfaces/spotify/track';
-import AutoGraphIcon from '@mui/icons-material/AutoGraph';
+// import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 import { StyledCardMedia } from './trackDetailsCard.styles';
 
 export default function TrackDetailsCard({ track, onSelect }: { track: Track; onSelect: (trackId: string) => void }) {

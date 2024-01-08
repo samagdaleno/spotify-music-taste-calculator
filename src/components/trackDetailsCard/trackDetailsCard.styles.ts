@@ -2,7 +2,7 @@ import { CardMedia } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 export const StyledCardMedia = styled(CardMedia)(() => ({
-  width: '35%',
+  width: '30%',
   position: 'relative',
   overflow: 'hidden',
   borderRadius: 'inherit',

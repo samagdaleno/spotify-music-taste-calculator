@@ -5,7 +5,7 @@ import TrackDetailsCard from '../trackDetailsCard/trackDetailsCard';
 
 export default function TrackDetailsList({ trackList, onSelect }: { trackList: Track[]; onSelect: (trackId: string) => void }) {
     return (
-        <Stack sx={{ width: "100%"}} spacing={1} >
+        <Stack sx={{pt: 2,  width: "100%"}} spacing={1} >
             {trackList.map((track: Track) => (
                 <TrackDetailsCard key={track.id} track={track} onSelect={onSelect} />
             ))}

@@ -55,6 +55,11 @@ export const getLSToken = async (): Promise<string> => {
     return localStorage.getItem('access_token') || "undefined";
 }
 
+export const getLSTrackById = (trackId: string): Track => {
+    const trackList: Track[] = getLSTracksListData("short_term").concat(getLSTracksListData("medium_term")).concat(getLSTracksListData("long_term"));
+    return trackList.find((track: Track) => track.id === trackId) || {} as Track;
+}
+
 const isTokenExpired = (): boolean => {
     const expirationDate: Date = getLSTokenExpiration();
     const currentTime: Date = new Date();

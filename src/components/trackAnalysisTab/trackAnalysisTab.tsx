@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react';
 import TrackDetailsList from '../structure/trackDetailsList';
 import Track from '../../interfaces/spotify/track';
 import TrackDetails from '../../interfaces/spotify/trackDetails';
-// import TrackFeaturesPanel from '../showcase/trackFeaturesPanel';
+import TrackFeaturesPanel from '../showcase/trackFeaturesPanel';
 import { getAverageTrackFeatures, getSingleTrackFeaturesById } from '../../services/spotify.service';
+import { Divider } from '@mui/material';
 
-export default function TrackAnalysisTab({ trackList }: { trackList: Track[] }) {
+export default function TrackAnalysisTab({ trackList, timeframe }: { trackList: Track[], timeframe: string }) {
     const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null);
-    //eslint-disable-next-line
     const [selectedTrackDetails, setSelectedTrackDetails] = useState<TrackDetails | null>(null);
-    //eslint-disable-next-line
     const [averageStats, setAverageStats] = useState<TrackDetails | null>(null);
 
     const handleTrackSelection = (trackId: string) => {
@@ -18,7 +17,7 @@ export default function TrackAnalysisTab({ trackList }: { trackList: Track[] }) 
 
     useEffect(() => {
         const fetchAverageStats = async () => {
-            const stats = await getAverageTrackFeatures("short_term");
+            const stats = await getAverageTrackFeatures(timeframe);
             setAverageStats(stats);
         };
 
@@ -38,11 +37,12 @@ export default function TrackAnalysisTab({ trackList }: { trackList: Track[] }) 
 
     return (
         <div>
-            {/* {selectedTrackDetails ? (
+            {selectedTrackDetails ? (
                 <TrackFeaturesPanel trackDetails={selectedTrackDetails} />
             ) : (
                 averageStats && <TrackFeaturesPanel trackDetails={averageStats} />
-            )} */}
+            )}
+                <Divider/>
 
             <TrackDetailsList trackList={trackList} onSelect={handleTrackSelection} />
         </div>

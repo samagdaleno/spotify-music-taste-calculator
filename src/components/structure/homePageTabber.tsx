@@ -28,7 +28,7 @@ export default function HomePageTabber() { //Rename this to something more descr
       <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider', width: '100%' }}>
           <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" centered>
-            <Tab label="Several Years" {...a11yProps(0)} />
+            <Tab label="Years" {...a11yProps(0)} />
             <Tab label="Last 6 Months" {...a11yProps(1)} />
             <Tab label="Last 4 weeks" {...a11yProps(2)} />
           </Tabs>
@@ -36,17 +36,13 @@ export default function HomePageTabber() { //Rename this to something more descr
         <CustomTabContainer value={value} index={0}>
           {/* <TitlebarImageList trackList={longTermTrackList} /> */}
           {/* <TrackDetailsList trackList={longTermTrackList} /> */}
-          <TrackAnalysisTab trackList={longTermTrackList} />
+          <TrackAnalysisTab trackList={longTermTrackList} timeframe='long_term' />
         </CustomTabContainer>
         <CustomTabContainer value={value} index={1}>
-          {/* <TitlebarImageList trackList={mediumTermTrackList} /> */}
-          {/* <TrackDetailsList trackList={mediumTermTrackList} /> */}
-          <TrackAnalysisTab trackList={mediumTermTrackList} />
+          <TrackAnalysisTab trackList={mediumTermTrackList} timeframe='medium_term'/>
         </CustomTabContainer>
         <CustomTabContainer value={value} index={2}>
-          {/* <TitlebarImageList trackList={shortTermTrackList} /> */}
-          {/* <TrackDetailsList trackList={shortTermTrackList} /> */}
-          <TrackAnalysisTab trackList={shortTermTrackList} />
+          <TrackAnalysisTab trackList={shortTermTrackList} timeframe='short_term'/>
         </CustomTabContainer>
       </Box>
     );

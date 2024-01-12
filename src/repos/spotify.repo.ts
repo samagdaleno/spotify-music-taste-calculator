@@ -8,7 +8,7 @@ import { getRefreshedToken } from "../services/token.service";
 export const setLSUserData = (userData: UserData) : void => {
     localStorage.setItem('user_id', JSON.stringify(userData.id));
     localStorage.setItem('user_display_name', JSON.stringify(userData.displayName));
-    localStorage.setItem('user_image_url', JSON.stringify(userData.imageUrl));
+    // localStorage.setItem('user_image_url', JSON.stringify(userData.imageUrl));
 }
 
 export const setLSTokensData = (accessToken: string, refreshToken: string, tokenExpiration: string) : void => { // TODO: Convert this to interface
@@ -44,7 +44,7 @@ export const getLSUserData = (): UserData => {
     return {
         id: JSON.parse(localStorage.getItem('user_id') || "undefined"),
         displayName: JSON.parse(localStorage.getItem('user_display_name') || "undefined"),
-        imageUrl: JSON.parse(localStorage.getItem('user_image_url') || "undefined"),
+        // imageUrl: JSON.parse(localStorage.getItem('user_image_url') || "undefined"),
     };
 }
 

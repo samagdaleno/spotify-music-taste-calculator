@@ -1,9 +1,10 @@
+import Artist from '../interfaces/spotify/artist';
 import Track from '../interfaces/spotify/track'; // TODO: Maybe i shouldn't be importing this here ? 
 import TrackDetails from '../interfaces/spotify/trackDetails';
 import UserData from '../interfaces/user.data'; // TODO: Maybe i shouldn't be importing this here ? 
-import { setLSTrackListData, setLSUserData, setLSAverageAudioFeatures, getLSTracksListData, getLSAverageAudioFeatures } from '../repos/spotify.repo';
+import { setLSTrackListData, setLSArtistsData, setLSUserData, setLSAverageAudioFeatures, getLSTracksListData, getLSAverageAudioFeatures } from '../repos/spotify.repo';
 import { calculateAverageTrackFeatures } from '../utils/track.features.utils';
-import { getUserData, getTopTracks, getTracksAudioFeatures, getSingleTrackAudioFeatures } from './api/spotify.api.service';
+import { getUserData, getTopTracks, getTopArtists, getTracksAudioFeatures, getSingleTrackAudioFeatures } from './api/spotify.api.service';
 import { mapAudioFeaturesResponseToTrackFeatures } from './mappers/mapAudioFeaturesResponseToTrackFeatures ';
 
 export const setUserData = async (): Promise<void> => {
@@ -34,6 +35,17 @@ export const setTopTracksLists = async (): Promise<void> => {
   setLSTrackListData(tracksMediumTerm, 'medium_term');
   setLSTrackListData(tracksLongTerm, 'long_term');
 };
+
+export const setTopArtistsLists = async (): Promise<void> => {
+  console.log('Getting top artists information...');
+  const artistsShortTerm = artistsMapper(await getTopArtists('short_term'));
+  const artistsMediumTerm = artistsMapper(await getTopArtists('medium_term'));
+  const artistsLongTerm = artistsMapper(await getTopArtists('long_term'));
+
+  setLSArtistsData(artistsShortTerm, 'short_term');
+  setLSArtistsData(artistsMediumTerm, 'medium_term');
+  setLSArtistsData(artistsLongTerm, 'long_term');
+}
 
 export const setTopTrackAnalytics = async (): Promise<void> => {
   console.log('Getting top tracks analytics...');
@@ -89,6 +101,24 @@ const trackMapper = (tracksResponse: any): Track[] => { // TODO: Find out where 
     throw error;
   }
 };
+
+const artistsMapper = (artistsResponse: any): Artist[] => { // TODO: Find out where to place mappers
+  try {
+    let position = 1;
+    const artists: Artist[] = artistsResponse.items.map((item: any) => ({
+      position: position++,
+      id: item.id,
+      name: item.name,
+      imageUrl: item.images[0].url,
+      popularity: item.popularity,
+    }));
+
+    return artists;
+  } catch (error) {
+    console.error('Error mapping top artists:', error);
+    throw error;
+  }
+}
 
 const getLSTrackListIds = (timeRange: string): string[] => { // TODO: Find out where to place this
   const trackList: Track[] = getLSTracksListData(timeRange);

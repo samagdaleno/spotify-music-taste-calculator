@@ -1,4 +1,5 @@
 import AudioFeaturesResponse from "../interfaces/responses/audioFeaturesResponse";
+import Artist from "../interfaces/spotify/artist";
 import Track from "../interfaces/spotify/track";
 // import TrackDetails from "../interfaces/spotify/trackDetails";
 import UserData from "../interfaces/user.data";
@@ -28,8 +29,16 @@ export const setLSTrackListData = (trackList: Track[], timeRange: string) : void
     localStorage.setItem(`${timeRange}_track_List`, JSON.stringify(trackList));
 }
 
+export const setLSArtistsData = (artistList: Artist[], timeRange: string) : void => {
+    localStorage.setItem(`${timeRange}_artist_List`, JSON.stringify(artistList));
+}
+
 export const getLSTracksListData = (timeRange: string): Track[] => {
     return JSON.parse(localStorage.getItem(`${timeRange}_track_List`) || "[]");
+}
+
+export const getLSArtistsData = (timeRange: string): Artist[] => {
+    return JSON.parse(localStorage.getItem(`${timeRange}_artist_List`) || "[]");
 }
 
 export const setLSAverageAudioFeatures = (averageAudioFeatures: AudioFeaturesResponse, timeRange: string) => { // TODO: WHAT THE FUCK ARE YOU DOING?

@@ -41,6 +41,25 @@ export const getTopTracks = async (timeRange: string): Promise<any> => {
     }
 };
 
+export const getTopArtists = async (timeRange: string): Promise<any> => {
+    try {
+        const accessToken = await getLSToken();
+        const response = await axios.get(`${SPOTIFY_API_BASE_URL}/me/top/artists`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+            params: {
+                time_range: timeRange,
+                limit: 50,
+            },
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error getting top artists:', error);
+        throw error;
+    }
+}
+
 // eslint-disable-next-line
 export const getTracksAudioFeatures = async (tracksIds: string[]): Promise<any> => {
     try {

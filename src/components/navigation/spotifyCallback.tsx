@@ -2,7 +2,7 @@ import { Box, CircularProgress, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getToken } from '../../services/token.service';
-import { setTopTracksLists, setTopTrackAnalytics, setUserData } from '../../services/spotify.service';
+import { setTopTracksLists, setTopTrackAnalytics, setUserData, setTopArtistsLists } from '../../services/spotify.service';
 
 const SpotifyCallback: React.FC = () => {
   const navigate = useNavigate();
@@ -16,7 +16,8 @@ const SpotifyCallback: React.FC = () => {
       await setUserData();
       setProgress('Getting top tracks...');
       await setTopTracksLists();
-      setProgress('Getting top track analytics...');
+      setProgress('Getting top artists...');
+      await setTopArtistsLists();
       await setTopTrackAnalytics();
       setProgress('Redirecting...');
 

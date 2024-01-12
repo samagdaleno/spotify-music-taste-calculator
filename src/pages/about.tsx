@@ -2,6 +2,7 @@
 import React from 'react';
 import DataTable from '../components/structure/tableTest';
 import TopArtistsList from '../components/topArtistsList/topArtistList';
+import ButtonBaseDemo from '../components/imageButton';
 
 const About: React.FC = () => {
   return (
@@ -21,7 +22,6 @@ const About: React.FC = () => {
         <br />It&apos;s not about genres; it&apos;s about your unique, one-of-a-kind, genre-defying taste. Embrace the chaos, and let this Spotify
         Analyzer show you what you <b>*REALLY*</b> like.
       </Typography> */}
-      <TopArtistsList />
       <DataTable />
     </div>
   );

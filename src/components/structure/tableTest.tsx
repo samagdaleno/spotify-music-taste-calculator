@@ -3,6 +3,7 @@ import { DataGrid, GridColumnMenu, GridColumnMenuProps, GridRowParams, GridRowSe
 import {  getLSTracksListData } from '../../repos/spotify.repo';
 import {  getSingleTrackFeaturesById } from '../../services/spotify.service';
 import TrackDetails from '../../interfaces/spotify/trackDetails';
+import ButtonBaseDemo from '../imageButton';
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 130 },
@@ -32,7 +33,7 @@ function CustomColumnMenu(props: GridColumnMenuProps) {
 export default function DataTable() { // TODO: Maybe pass in the time range as a prop
   const rows = getLSTracksListData("short_term"); // TODO: move this to a service
   // const averageStats = getAverageTrackFeatures("short_term")
-  // const trackList = getLSTracksListData("short_term")
+  const trackList = getLSTracksListData("short_term")
   const [rowSelectionModel, setRowSelectionModel] = React.useState<GridRowSelectionModel>([]);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedTrackDetails, setSelectedTrackDetails] = React.useState<TrackDetails>({} as TrackDetails);
@@ -58,7 +59,8 @@ export default function DataTable() { // TODO: Maybe pass in the time range as a
       <TrackFeaturesPanel trackDetails={selectedTrackDetails}></TrackFeaturesPanel> 
       : <TrackFeaturesPanel trackDetails={averageStats}></TrackFeaturesPanel>} */}
       
-      
+      <ButtonBaseDemo trackList={trackList} />
+       
       <DataGrid
         rows={rows}
         columns={columns}

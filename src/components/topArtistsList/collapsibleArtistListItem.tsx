@@ -3,11 +3,11 @@ import React from "react";
 
 export default function CollapsibleArtistListItem() {
     const [open, setOpen] = React.useState(false);
- 
+
     const handleClick = () => {
         setOpen(!open);
     };
-    
+
     return (
         <React.Fragment>
             <ListItemButton onClick={handleClick}>

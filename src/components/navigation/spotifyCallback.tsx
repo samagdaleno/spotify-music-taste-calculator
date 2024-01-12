@@ -2,7 +2,7 @@ import { Box, CircularProgress, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getToken } from '../../services/token.service';
-import { setTopTracksLists, setTopTrackAnalytics } from '../../services/spotify.service';
+import { setTopTracksLists, setTopTrackAnalytics, setUserData } from '../../services/spotify.service';
 
 const SpotifyCallback: React.FC = () => {
   const navigate = useNavigate();
@@ -10,10 +10,10 @@ const SpotifyCallback: React.FC = () => {
 
   useEffect(() => {
     const handleCallback = async () => {
-      setProgress('Getting token...');
+      setProgress('Getting login info...');
       await getToken(); // TODO: This is calling the api service directly, should be calling the token service
-      // setProgress('Getting user data...');  
-      // await setUserData(); // Last call before error is here (setUserData)
+      setProgress('Getting user data...');
+      await setUserData();
       setProgress('Getting top tracks...');
       await setTopTracksLists();
       setProgress('Getting top track analytics...');

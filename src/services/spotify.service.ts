@@ -14,7 +14,7 @@ export const setUserData = async (): Promise<void> => {
     const userData: UserData = { // TODO: Get this logic out of here and find out where it belongs
       id: response.id,
       displayName: response.display_name,
-      imageUrl: response.images[0].url || '',
+      // imageUrl: response.images[0].url || '',
     };
 
     setLSUserData(userData);

@@ -8,6 +8,10 @@ export const getToken = async (): Promise<string> => {
   const code = urlParams.get('code');
 
   const codeVerifier = localStorage.getItem('code_verifier');
+  if (!code || !codeVerifier) {
+    console.error('No code or code verifier found');
+    return '';
+  }
   const tokenUrl = 'https://accounts.spotify.com/api/token';
   const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID || '';
   const redirectUri = process.env.REACT_APP_SPOTIFY_REDIRECT_URI || '';

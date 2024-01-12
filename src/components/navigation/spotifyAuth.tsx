@@ -5,6 +5,7 @@ const SpotifyAuth: React.FC = () => {
     useEffect(() => {
         const authenticateSpotify = async () => {
             const codeVerifier = PKCEUtils.generateCodeVerifier();
+            console.log(codeVerifier);
             window.localStorage.setItem('code_verifier', codeVerifier);
 
             const codeChallenge = await PKCEUtils.generateCodeChallenge(codeVerifier);

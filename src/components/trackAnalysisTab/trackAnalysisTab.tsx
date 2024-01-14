@@ -19,16 +19,17 @@ export default function TrackAnalysisTab({ trackList, timeframe }: { trackList: 
 
     useEffect(() => {
         const fetchAverageStats = async () => {
-            const stats = await getAverageTrackFeatures(timeframe);
+            const stats = await getAverageTrackFeatures(timeframe);  
             setAverageStats(stats);
         };
 
         fetchAverageStats();
-    }, []);
+    }, [timeframe]);
 
     useEffect(() => {
         const fetchSelectedTrackDetails = async () => {
             if (selectedTrackId) {
+                setAverageStats(null);
                 const details = await getSingleTrackFeaturesById(selectedTrackId);
                 setSelectedTrackDetails(details);
             }
@@ -39,10 +40,10 @@ export default function TrackAnalysisTab({ trackList, timeframe }: { trackList: 
 
     return (
         <div>
-            {selectedTrackDetails ? (
-                <TrackFeaturesPanel trackDetails={selectedTrackDetails} />
+            {averageStats ? (
+                <TrackFeaturesPanel trackDetails={averageStats} />
             ) : (
-                averageStats && <TrackFeaturesPanel trackDetails={averageStats} />
+                selectedTrackDetails && <TrackFeaturesPanel trackDetails={selectedTrackDetails} />
             )}
                 <Divider/>
 

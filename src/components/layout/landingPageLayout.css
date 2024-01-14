@@ -1,0 +1,19 @@
+.chip-toggle-button {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 5px;
+    font-weight: 400;
+    color: #333;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        background-color: #ccc;
+    }
+}
+
+.chip-toggle-button:hover {
+    background-color: #10eb60 !important;
+    color: #002A07;
+}

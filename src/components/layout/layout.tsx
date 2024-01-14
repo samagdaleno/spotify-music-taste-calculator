@@ -7,12 +7,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import DrawerElements from '../navigation/drawerElements';
-
+import LayoutProps from '../../interfaces/props/layoutProps';
 const drawerWidth = 240;
-
-interface LayoutProps {
-    children: React.ReactNode;
-}
 
 export default function Layout({ children }: LayoutProps) {
     const [mobileOpen, setMobileOpen] = React.useState(false);

@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import TrackDetailsList from '../structure/trackDetailsList';
 import Track from '../../interfaces/spotify/track';
 import TrackDetails from '../../interfaces/spotify/trackDetails';
-import TrackFeaturesPanel from '../showcase/trackFeaturesPanel';
+// import TrackFeaturesPanel from '../showcase/trackFeaturesPanel';
 import { getAverageTrackFeatures, getSingleTrackFeaturesById } from '../../services/spotify.service';
 import { Divider } from '@mui/material';
 import StatAnalysisCard from '../trackAnalysisCard/analysisCard';
-import { time } from 'console';
+// import { time } from 'console';
 
 
 export default function TrackAnalysisTab({ trackList, timeframe }: { trackList: Track[], timeframe: string }) {

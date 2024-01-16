@@ -1,8 +1,8 @@
 // import { Typography } from '@mui/material';
 import React from 'react';
-import DataTable from '../components/structure/tableTest';
-import TopArtistsList from '../components/topArtistsList/topArtistList';
-import ButtonBaseDemo from '../components/imageButton';
+// import DataTable from '../components/structure/tableTest';
+// import TopArtistsList from '../components/topArtistsList/topArtistList';
+// import ButtonBaseDemo from '../components/imageButton';
 import LandingPageLayout from '../components/layout/landingPageLayout';
 
 const About: React.FC = () => {
@@ -24,9 +24,8 @@ const About: React.FC = () => {
         Analyzer show you what you <b>*REALLY*</b> like.
       </Typography> */}
       {/* <DataTable /> */}
-      <LandingPageLayout>
-        <TopArtistsList />
-      </LandingPageLayout>
+      <LandingPageLayout/>
+        {/* <TopArtistsList /> */}
     </div>
   );
 };

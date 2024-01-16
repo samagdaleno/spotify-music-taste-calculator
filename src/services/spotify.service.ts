@@ -96,9 +96,11 @@ const trackMapper = (tracksResponse: any): Track[] => { // TODO: Find out where 
   }
 };
 
+// eslint-disable-next-line
 const artistsMapper = (artistsResponse: any): Artist[] => { // TODO: Find out where to place mappers
   try {
     let position = 1;
+    // eslint-disable-next-line
     const artists: Artist[] = artistsResponse.items.map((item: any) => ({
       position: position++,
       id: item.id,
@@ -114,6 +116,7 @@ const artistsMapper = (artistsResponse: any): Artist[] => { // TODO: Find out wh
   }
 }
 
+// eslint-disable-next-line
 const userDataMapper = (userDataResponse: any): UserData => { // TODO: Find out where to place mappers
   try {
     //check if user has an image

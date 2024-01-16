@@ -5,6 +5,8 @@ import TrackDetails from '../../interfaces/spotify/trackDetails';
 import TrackFeaturesPanel from '../showcase/trackFeaturesPanel';
 import { getAverageTrackFeatures, getSingleTrackFeaturesById } from '../../services/spotify.service';
 import { Divider } from '@mui/material';
+import StatAnalysisCard from '../trackAnalysisCard/analysisCard';
+import { time } from 'console';
 
 
 export default function TrackAnalysisTab({ trackList, timeframe }: { trackList: Track[], timeframe: string }) {
@@ -19,7 +21,8 @@ export default function TrackAnalysisTab({ trackList, timeframe }: { trackList: 
 
     useEffect(() => {
         const fetchAverageStats = async () => {
-            const stats = await getAverageTrackFeatures(timeframe);  
+            setSelectedTrackDetails(null);
+            const stats = await getAverageTrackFeatures(timeframe);
             setAverageStats(stats);
         };
 
@@ -29,7 +32,6 @@ export default function TrackAnalysisTab({ trackList, timeframe }: { trackList: 
     useEffect(() => {
         const fetchSelectedTrackDetails = async () => {
             if (selectedTrackId) {
-                setAverageStats(null);
                 const details = await getSingleTrackFeaturesById(selectedTrackId);
                 setSelectedTrackDetails(details);
             }
@@ -40,12 +42,14 @@ export default function TrackAnalysisTab({ trackList, timeframe }: { trackList: 
 
     return (
         <div>
-            {averageStats ? (
-                <TrackFeaturesPanel trackDetails={averageStats} />
+            {selectedTrackDetails ? (
+                <StatAnalysisCard trackDetails={selectedTrackDetails} timeframe={timeframe} />
             ) : (
-                selectedTrackDetails && <TrackFeaturesPanel trackDetails={selectedTrackDetails} />
+                averageStats && 
+                <StatAnalysisCard trackDetails={averageStats} timeframe={timeframe}  />
             )}
-                <Divider/>
+            {/* <OutlinedCard trackDetails={averageStats}  /> */}
+            <Divider />
 
             <TrackDetailsList trackList={trackList} onSelect={handleTrackSelection} />
         </div>

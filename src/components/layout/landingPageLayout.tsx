@@ -38,8 +38,8 @@ export default function LandingPageLayout({ children }: LayoutProps) {
     };
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-            <Stack direction="row" spacing={2} alignItems="center"  >
+        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+            <Stack direction="row" spacing={2} alignItems="center" sx={{pb:1}} >
                 <Avatar alt="Remy Sharp" src={userData.imageUrl} />
                 <ToggleButtonGroup size="large" aria-label="Large sizes">
                     <Stack direction="row" spacing={1}>
@@ -64,6 +64,7 @@ export default function LandingPageLayout({ children }: LayoutProps) {
                     </Stack>
                 </ToggleButtonGroup>
             </Stack>
+
             <TrackAnalysisTab trackList={selectedTrackList} timeframe={selectedTimeframe} />
         </Box>
     );

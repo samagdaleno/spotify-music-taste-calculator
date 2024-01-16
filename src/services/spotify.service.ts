@@ -10,13 +10,7 @@ import { mapAudioFeaturesResponseToTrackFeatures } from './mappers/mapAudioFeatu
 export const setUserData = async (): Promise<void> => {
   try {
     console.log('Getting user profile...');
-    const response = await getUserData();
-
-    const userData: UserData = { // TODO: Get this logic out of here and find out where it belongs
-      id: response.id,
-      displayName: response.display_name,
-      imageUrl: response.images[0].url || '',
-    };
+    const userData = userDataMapper(await getUserData());
 
     setLSUserData(userData);
   } catch (error) {
@@ -57,7 +51,7 @@ export const setTopTrackAnalytics = async (): Promise<void> => {
   const tracksShortTermFeatures = await getTracksAudioFeatures(tracksShortTermIds);
   const tracksMediumTermFeatures = await getTracksAudioFeatures(tracksMediumTermIds);
   const tracksLongTermFeatures = await getTracksAudioFeatures(tracksLongTermIds);
-  
+
   const averageTrackFeaturesShortTerm = calculateAverageTrackFeatures(tracksShortTermFeatures.audio_features);
   const averageTrackFeaturesMediumTerm = calculateAverageTrackFeatures(tracksMediumTermFeatures.audio_features);
   const averageTrackFeaturesLongTerm = calculateAverageTrackFeatures(tracksLongTermFeatures.audio_features);
@@ -67,10 +61,10 @@ export const setTopTrackAnalytics = async (): Promise<void> => {
   setLSAverageAudioFeatures(averageTrackFeaturesLongTerm, 'long_term');
 }
 
-export const getSingleTrackFeaturesById = async(trackId : string): Promise<TrackDetails> => {
+export const getSingleTrackFeaturesById = async (trackId: string): Promise<TrackDetails> => {
   // TODO: Error Handling
   const auidoFeaturesResponse = await getSingleTrackAudioFeatures(trackId);
-  const trackFeatures=  mapAudioFeaturesResponseToTrackFeatures(auidoFeaturesResponse);
+  const trackFeatures = mapAudioFeaturesResponseToTrackFeatures(auidoFeaturesResponse);
   return trackFeatures;
 }
 
@@ -116,6 +110,26 @@ const artistsMapper = (artistsResponse: any): Artist[] => { // TODO: Find out wh
     return artists;
   } catch (error) {
     console.error('Error mapping top artists:', error);
+    throw error;
+  }
+}
+
+const userDataMapper = (userDataResponse: any): UserData => { // TODO: Find out where to place mappers
+  try {
+    //check if user has an image
+    if (userDataResponse.images.length === 0) {
+      userDataResponse.images[0] = { url: '' };
+    }
+
+    const userData: UserData = {
+      id: userDataResponse.id,
+      displayName: userDataResponse.display_name,
+      imageUrl: userDataResponse.images[0].url,
+    };
+
+    return userData;
+  } catch (error) {
+    console.error('Error mapping user data:', error);
     throw error;
   }
 }

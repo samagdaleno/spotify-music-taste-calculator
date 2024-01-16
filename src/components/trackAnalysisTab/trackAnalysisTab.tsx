@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import TrackDetailsList from '../structure/trackDetailsList';
 import Track from '../../interfaces/spotify/track';
 import TrackDetails from '../../interfaces/spotify/trackDetails';
-import TrackFeaturesPanel from '../showcase/trackFeaturesPanel';
+// import TrackFeaturesPanel from '../showcase/trackFeaturesPanel';
 import { getAverageTrackFeatures, getSingleTrackFeaturesById } from '../../services/spotify.service';
 import { Divider } from '@mui/material';
+import StatAnalysisCard from '../trackAnalysisCard/analysisCard';
+// import { time } from 'console';
 
 
 export default function TrackAnalysisTab({ trackList, timeframe }: { trackList: Track[], timeframe: string }) {
@@ -19,12 +21,13 @@ export default function TrackAnalysisTab({ trackList, timeframe }: { trackList: 
 
     useEffect(() => {
         const fetchAverageStats = async () => {
+            setSelectedTrackDetails(null);
             const stats = await getAverageTrackFeatures(timeframe);
             setAverageStats(stats);
         };
 
         fetchAverageStats();
-    }, []);
+    }, [timeframe]);
 
     useEffect(() => {
         const fetchSelectedTrackDetails = async () => {
@@ -40,11 +43,13 @@ export default function TrackAnalysisTab({ trackList, timeframe }: { trackList: 
     return (
         <div>
             {selectedTrackDetails ? (
-                <TrackFeaturesPanel trackDetails={selectedTrackDetails} />
+                <StatAnalysisCard trackDetails={selectedTrackDetails} timeframe={timeframe} />
             ) : (
-                averageStats && <TrackFeaturesPanel trackDetails={averageStats} />
+                averageStats && 
+                <StatAnalysisCard trackDetails={averageStats} timeframe={timeframe}  />
             )}
-                <Divider/>
+            {/* <OutlinedCard trackDetails={averageStats}  /> */}
+            <Divider />
 
             <TrackDetailsList trackList={trackList} onSelect={handleTrackSelection} />
         </div>

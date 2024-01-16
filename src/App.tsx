@@ -6,20 +6,30 @@ import SpotifyCallback from './components/navigation/spotifyCallback';
 import SpotifyAuth from './components/navigation/spotifyAuth';
 import './styles/App.css';
 import Layout from './components/layout/layout';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { CssBaseline } from '@mui/material';
 // import Login from './pages/login';
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
-function App ()  {
+function App() {
   return (
-    <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" Component={Home} />
-          <Route path="/callback" Component={SpotifyCallback} />
-          <Route path="/login" Component={SpotifyAuth} />
-          <Route path="/about" Component={About} />
-        </Routes>
-      </Layout>
-    </Router>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <Router>
+        <Layout>
+          <Routes>
+            <Route path="/" Component={Home} />
+            <Route path="/callback" Component={SpotifyCallback} />
+            <Route path="/login" Component={SpotifyAuth} />
+            <Route path="/about" Component={About} />
+          </Routes>
+        </Layout>
+      </Router>
+    </ThemeProvider>
   );
 }
 

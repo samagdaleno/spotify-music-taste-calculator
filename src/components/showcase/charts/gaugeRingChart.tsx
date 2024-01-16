@@ -13,6 +13,7 @@ export default function GaugeRingChart({ trackDetails }: { trackDetails: TrackDe
           value: trackDetails.energy,
           name: 'Energy',
           title: {
+            color: '#fff',
             offsetCenter: ['0%', '-30%'],
             link:"https://www.youtube.com/watch?v=2HQaBWziYvY"
           },
@@ -21,13 +22,14 @@ export default function GaugeRingChart({ trackDetails }: { trackDetails: TrackDe
             offsetCenter: ['0%', '-20%']
           },
           itemStyle: {
-            color: '#475D36',
+            color: '#7a00f4',
           },
         },
         {
           value: trackDetails.danceability,
           name: 'Danceability',
           title: {
+            color: '#fff',
             offsetCenter: ['0%', '0%'],
             bottom: '400px'
           },
@@ -36,13 +38,14 @@ export default function GaugeRingChart({ trackDetails }: { trackDetails: TrackDe
             offsetCenter: ['0%', '10%']
           },
           itemStyle: {
-            color: '#222D2F', 
+            color: '#10eb60', 
           },
         },
         {
           value: trackDetails.valence,
           name: 'Happiness',
           title: {
+            color: '#fff',
             offsetCenter: ['0%', '30%']
           },
           detail: {
@@ -50,7 +53,7 @@ export default function GaugeRingChart({ trackDetails }: { trackDetails: TrackDe
             offsetCenter: ['0%', '40%']
           },
           itemStyle: {
-            color: '#7B6420', 
+            color: '#fea726', 
           },
         }
       ];
@@ -75,13 +78,13 @@ export default function GaugeRingChart({ trackDetails }: { trackDetails: TrackDe
               roundCap: true,
               clip: false,
               itemStyle: {
-                borderWidth: 2,
-                borderColor: '#E6EBF8'
+                borderWidth: 1,
+                borderColor: '#747775'
               }
             },
             axisLine: {
               lineStyle: {
-                width: 30
+                width: 60
               }
             },
             splitLine: {

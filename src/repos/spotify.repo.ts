@@ -1,4 +1,5 @@
 import AudioFeaturesResponse from "../interfaces/responses/audioFeaturesResponse";
+import Artist from "../interfaces/spotify/artist";
 import Track from "../interfaces/spotify/track";
 // import TrackDetails from "../interfaces/spotify/trackDetails";
 import UserData from "../interfaces/user.data";
@@ -8,7 +9,7 @@ import { getRefreshedToken } from "../services/token.service";
 export const setLSUserData = (userData: UserData) : void => {
     localStorage.setItem('user_id', JSON.stringify(userData.id));
     localStorage.setItem('user_display_name', JSON.stringify(userData.displayName));
-    // localStorage.setItem('user_image_url', JSON.stringify(userData.imageUrl));
+    localStorage.setItem('user_image_url', JSON.stringify(userData.imageUrl));
 }
 
 export const setLSTokensData = (accessToken: string, refreshToken: string, tokenExpiration: string) : void => { // TODO: Convert this to interface
@@ -28,8 +29,16 @@ export const setLSTrackListData = (trackList: Track[], timeRange: string) : void
     localStorage.setItem(`${timeRange}_track_List`, JSON.stringify(trackList));
 }
 
+export const setLSArtistsData = (artistList: Artist[], timeRange: string) : void => {
+    localStorage.setItem(`${timeRange}_artist_List`, JSON.stringify(artistList));
+}
+
 export const getLSTracksListData = (timeRange: string): Track[] => {
     return JSON.parse(localStorage.getItem(`${timeRange}_track_List`) || "[]");
+}
+
+export const getLSArtistsData = (timeRange: string): Artist[] => {
+    return JSON.parse(localStorage.getItem(`${timeRange}_artist_List`) || "[]");
 }
 
 export const setLSAverageAudioFeatures = (averageAudioFeatures: AudioFeaturesResponse, timeRange: string) => { // TODO: WHAT THE FUCK ARE YOU DOING?
@@ -44,7 +53,7 @@ export const getLSUserData = (): UserData => {
     return {
         id: JSON.parse(localStorage.getItem('user_id') || "undefined"),
         displayName: JSON.parse(localStorage.getItem('user_display_name') || "undefined"),
-        // imageUrl: JSON.parse(localStorage.getItem('user_image_url') || "undefined"),
+        imageUrl: JSON.parse(localStorage.getItem('user_image_url') || "undefined"),
     };
 }
 

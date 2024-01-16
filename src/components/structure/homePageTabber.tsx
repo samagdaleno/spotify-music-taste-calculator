@@ -4,7 +4,7 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import CustomTabContainer from './tabContainer';
 // import TrackDetailsList from './trackDetailsList';
-import { getLSTracksListData } from '../../repos/spotify.repo';
+import { getLSTracksListData, getLSArtistsData } from '../../repos/spotify.repo';
 import TrackAnalysisTab from '../trackAnalysisTab/trackAnalysisTab';
 
 function a11yProps(index: number) {
@@ -16,9 +16,16 @@ function a11yProps(index: number) {
 // TODO: Create multiple branches to try different project structures
 export default function HomePageTabber() { //Rename this to something more descriptive
     const [value, setValue] = React.useState(0);
+    const longTermArtistList = getLSArtistsData("long_term");
+    const mediumTermArtistList = getLSArtistsData("medium_term");
+    const shortTermArtistList = getLSArtistsData("short_term");
     const longTermTrackList = getLSTracksListData("long_term"); //Add this to env variables  
     const mediumTermTrackList = getLSTracksListData("medium_term");
     const shortTermTrackList = getLSTracksListData("short_term");
+
+    console.log(longTermArtistList);
+    console.log(mediumTermArtistList);
+    console.log(shortTermArtistList);
   
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
       setValue(newValue);

@@ -48,7 +48,6 @@ export default function TrackAnalysisTab({ trackList, timeframe }: { trackList: 
                 averageStats && 
                 <StatAnalysisCard trackDetails={averageStats} timeframe={timeframe}  />
             )}
-            {/* <OutlinedCard trackDetails={averageStats}  /> */}
             <Divider />
 
             <TrackDetailsList trackList={trackList} onSelect={handleTrackSelection} />

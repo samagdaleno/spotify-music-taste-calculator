@@ -6,6 +6,7 @@ import TrackDetails from '../../interfaces/spotify/trackDetails';
 import { getAverageTrackFeatures, getSingleTrackFeaturesById } from '../../services/spotify.service';
 import { Divider } from '@mui/material';
 import StatAnalysisCard from '../trackAnalysisCard/analysisCard';
+import TrackCollapsibleCard from '../trackCollapsibleCard/trackCollapsibleCard';
 // import { time } from 'console';
 
 
@@ -45,11 +46,9 @@ export default function TrackAnalysisTab({ trackList, timeframe }: { trackList: 
             {selectedTrackDetails ? (
                 <StatAnalysisCard trackDetails={selectedTrackDetails} timeframe={timeframe} />
             ) : (
-                averageStats && 
-                <StatAnalysisCard trackDetails={averageStats} timeframe={timeframe}  />
+                averageStats && <TrackCollapsibleCard trackDetails={averageStats} />
+                // <StatAnalysisCard trackDetails={averageStats} timeframe={timeframe} />
             )}
-            <Divider />
-
             <TrackDetailsList trackList={trackList} onSelect={handleTrackSelection} />
         </div>
     );

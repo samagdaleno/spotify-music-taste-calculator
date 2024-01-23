@@ -24,7 +24,7 @@ const About: React.FC = () => {
         <br />It&apos;s not about genres; it&apos;s about your unique, one-of-a-kind, genre-defying taste. Embrace the chaos, and let this Spotify
         Analyzer show you what you <b>*REALLY*</b> like.
       </Typography> */}
-      <TrackCollapsibleCard />
+      {/* <TrackCollapsibleCard /> */}
       {/* <CollapsibleTable/> */}
       {/* <DataTable /> */}
       {/* <LandingPageLayout/> */}

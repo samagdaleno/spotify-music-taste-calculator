@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
-import { Card, CardActionArea, CardContent, Typography } from '@mui/material';
+import { Card, CardActionArea, CardContent, Hidden, Typography } from '@mui/material';
 import Track from '../../interfaces/spotify/track';
 // import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 import { StyledCardMedia } from './trackDetailsCard.styles';
@@ -18,33 +18,37 @@ export default function TrackDetailsCard({ track, onSelect }: { track: Track; on
   };
 
   return (
-    <Card sx={{ display: '-webkit-box', overflow: "auto" }}>
-      <StyledCardMedia
+    <Card>
+      {/* <StyledCardMedia
         sx={{
+          height: 80,
+          width: 80,
           '&:after': {
             opacity: isClicked ? 1 : 0,
-            transform: isClicked ? 'scale(2)' : 'scale(0)'
+            transform: isClicked ? 'scale(2)' : 'scale(0)',
           },
         }}
         image={track.imageUrl}
-        onClick={() => handleClick(track)} />
-      {/* <CardActionArea> */}
-        <Box >
-          <CardActionArea onClick={() => handleClick(track)}>
+        onClick={() => handleClick(track)}
+      /> */}
+      <Box>
+        <CardActionArea onClick={() => handleClick(track)}>
           <CardContent>
-            <Typography component="div" variant="subtitle2">
+            <Typography
+              variant="subtitle2"
+              sx={{
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+              }}
+            >
               {track.position}. {track.name}
             </Typography>
-            <Typography variant="subtitle1" color="text.secondary" component="div">
-              {track.artist}
-            </Typography>
-            <Typography variant="caption" color="text.secondary" component="div">
-              {track.album}
+            <Typography variant="subtitle2" color="text.secondary" textOverflow={'ellipsis'} overflow={'hidden'}>
+              {track.artist} • {track.album}
             </Typography>
           </CardContent>
-          </CardActionArea>
-        </Box>
-      {/* </CardActionArea> */}
+        </CardActionArea>
+      </Box>
     </Card>
   );
 }

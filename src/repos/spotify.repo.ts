@@ -3,7 +3,7 @@ import Artist from "../interfaces/spotify/artist";
 import Track from "../interfaces/spotify/track";
 // import TrackDetails from "../interfaces/spotify/trackDetails";
 import UserData from "../interfaces/user.data";
-import { getRefreshedToken } from "../services/token.service";
+// import { getRefreshedToken } from "../services/token.service";
 
 
 export const setLSUserData = (userData: UserData) : void => {
@@ -59,7 +59,10 @@ export const getLSUserData = (): UserData => {
 
 export const getLSToken = async (): Promise<string> => {
     if (isTokenExpired()) {
-        await getRefreshedToken();
+        // await getRefreshedToken();
+        localStorage.clear(); // TODO: Alert user of token expiration, and consequential redirection.
+        window.location.href = "/"; // TODO: Review this approach, seems nasty...
+
     }
     return localStorage.getItem('access_token') || "undefined";
 }

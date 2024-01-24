@@ -87,6 +87,7 @@ const trackMapper = (tracksResponse: any): Track[] => { // TODO: Find out where 
       imageUrl: item.album.images[0].url,
       popularity: item.popularity,
       releaseDate: item.album.release_date,
+      spotifyUri: item.uri
     }));
 
     return tracks;

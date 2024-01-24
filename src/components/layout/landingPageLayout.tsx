@@ -23,7 +23,6 @@ export default function LandingPageLayout() {
     console.log(shortTermArtistList);
 
     const handleClick = (index: number, timeframe: string) => {
-        console.info(`You clicked the Chip at index ${index}.`);
         setSelectedChip(index);
         setSelectedTimeframe(timeframe);
         setSelectedTrackList(getLSTracksListData(timeframe));
@@ -63,6 +62,7 @@ export default function LandingPageLayout() {
                     </Stack>
                 </ToggleButtonGroup>
             </Stack>
+            {/* <ArtistsAvatarList artists={longTermArtistList}/> */}
 
             <TrackAnalysisTab trackList={selectedTrackList} timeframe={selectedTimeframe} />
         </Box>

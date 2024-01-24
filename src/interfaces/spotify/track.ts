@@ -7,4 +7,5 @@ export default interface Track {
     imageUrl: string;
     popularity: number;
     releaseDate: string;
+    spotifyUri: string;
 }

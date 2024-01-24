@@ -1,5 +1,5 @@
 export default interface TrackDetails {
-    track_id: string; // TODO: isn't it trackId ?
+    track_id: string;
     track_name: string; 
     track_artist: string;
     track_album: string;

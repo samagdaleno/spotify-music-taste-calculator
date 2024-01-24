@@ -23,7 +23,6 @@ interface RatingCardProps {
 const RatingCard: React.FC<RatingCardProps> = ({
     title,
     value,
-    description,
     icon,
     color,
     open = false,
@@ -55,13 +54,13 @@ const RatingCard: React.FC<RatingCardProps> = ({
                     {expanded ? <ExpandLessIcon sx={{color:color}} /> : <ExpandMoreIcon sx={{color:color}}  />}
                 </Button>
             </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
+            {/* <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
                     <Typography variant="body2" color="text.secondary">
                         {description}
                     </Typography>
                 </CardContent>
-            </Collapse>
+            </Collapse> */}
         </>
     );
 };

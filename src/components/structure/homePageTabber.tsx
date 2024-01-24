@@ -23,9 +23,9 @@ export default function HomePageTabber() { //Rename this to something more descr
     const mediumTermTrackList = getLSTracksListData("medium_term");
     const shortTermTrackList = getLSTracksListData("short_term");
 
-    console.log(longTermArtistList);
-    console.log(mediumTermArtistList);
-    console.log(shortTermArtistList);
+    // console.log(longTermArtistList);
+    // console.log(mediumTermArtistList);
+    // console.log(shortTermArtistList);
   
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
       setValue(newValue);

@@ -28,6 +28,7 @@ const BorderLinearProgress = styled(LinearProgress, {
 }));
 
 
+// eslint-disable-next-line
 export default function TrackDetailsCard({ track, onSelect }: { track: Track; onSelect: (trackId: string) => void }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedTrackDetails, setSelectedTrackDetails] = useState<TrackDetails | null>(null);

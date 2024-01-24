@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import {
     CardActions,
-    Collapse,
     Button,
     Chip,
     Rating,
-    Typography,
-    CardContent,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';

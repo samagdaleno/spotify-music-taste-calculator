@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Stack, Typography } from "@mui/material";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import TrackDetails from "../../interfaces/spotify/trackDetails";

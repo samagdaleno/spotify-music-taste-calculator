@@ -9,18 +9,18 @@ import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfi
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 import AudiotrackSharpIcon from '@mui/icons-material/AudiotrackSharp';
 import RatingCard from './statRating';
-import { Chip, Collapse, Divider, Stack } from '@mui/material';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import VolumeUpIcon from '@mui/icons-material/VolumeUp';
-import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
-import MusicNoteIcon from '@mui/icons-material/MusicNote';
-import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
+import { Divider } from '@mui/material';
+// import AccessTimeIcon from '@mui/icons-material/AccessTime';
+// import VolumeUpIcon from '@mui/icons-material/VolumeUp';
+// import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
+// import MusicNoteIcon from '@mui/icons-material/MusicNote';
+// import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
 
 
 
 export default function StatAnalysisCard({ trackDetails, timeframe }: { trackDetails: TrackDetails, timeframe: string }) {
     // TODO: Refactor timeframe to be an enum
-    const [extraStatsExpanded, setExtraStatsExpanded] = React.useState(true);
+    // const [extraStatsExpanded, setExtraStatsExpanded] = React.useState(true);
 
     return (
         <Box sx={{ minWidth: 275 }}>
@@ -57,7 +57,7 @@ export default function StatAnalysisCard({ trackDetails, timeframe }: { trackDet
                 />
                 <Divider />
 
-                <Collapse in={extraStatsExpanded} timeout="auto" unmountOnExit>
+                {/* <Collapse in={extraStatsExpanded} timeout="auto" unmountOnExit>
                     <CardContent>
                         <Stack direction="row" justifyContent="center" alignItems="center" spacing={1}>
                             <Chip icon={<BoltIcon />}
@@ -76,7 +76,7 @@ export default function StatAnalysisCard({ trackDetails, timeframe }: { trackDet
                                 label={trackDetails.key} variant="outlined" color="info" />) : (<div></div>)}
                         </Stack>
                     </CardContent>
-                </Collapse>
+                </Collapse> */}
             </Card>
         </Box>
     );

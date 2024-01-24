@@ -4,7 +4,6 @@ import Track from '../../interfaces/spotify/track';
 import TrackDetails from '../../interfaces/spotify/trackDetails';
 // import TrackFeaturesPanel from '../showcase/trackFeaturesPanel';
 import { getAverageTrackFeatures, getSingleTrackFeaturesById } from '../../services/spotify.service';
-import { Divider } from '@mui/material';
 import StatAnalysisCard from '../trackAnalysisCard/analysisCard';
 import TrackCollapsibleCard from '../trackCollapsibleCard/trackCollapsibleCard';
 // import { time } from 'console';

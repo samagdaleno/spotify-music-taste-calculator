@@ -5,8 +5,6 @@ import { getLSArtistsData, getLSTracksListData, getLSUserData } from "../../repo
 import './landingPageLayout.css';
 import TrackAnalysisTab from "../trackAnalysisTab/trackAnalysisTab";
 import Track from "../../interfaces/spotify/track";
-import ArtistAvatar from "../artistsDetailsCard/artistsDetailsCard";
-import ArtistsAvatarList from "../artistsDetailsCard/artistsAvatarList";
 
 export default function LandingPageLayout() {
 

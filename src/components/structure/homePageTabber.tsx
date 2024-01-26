@@ -14,7 +14,7 @@ function a11yProps(index: number) {
     };
   }
 // TODO: Create multiple branches to try different project structures
-export default function HomePageTabber() { //Rename this to something more descriptive
+export default function HomePageTabber() { // TODO: Delete
     const [value, setValue] = React.useState(0);
     const longTermArtistList = getLSArtistsData("long_term");
     const mediumTermArtistList = getLSArtistsData("medium_term");
@@ -43,13 +43,13 @@ export default function HomePageTabber() { //Rename this to something more descr
         <CustomTabContainer value={value} index={0}>
           {/* <TitlebarImageList trackList={longTermTrackList} /> */}
           {/* <TrackDetailsList trackList={longTermTrackList} /> */}
-          <TrackAnalysisTab trackList={longTermTrackList} timeframe='long_term' />
+          <TrackAnalysisTab trackList={longTermTrackList} artistList={longTermArtistList} timeframe='long_term' />
         </CustomTabContainer>
         <CustomTabContainer value={value} index={1}>
-          <TrackAnalysisTab trackList={mediumTermTrackList} timeframe='medium_term'/>
+          <TrackAnalysisTab trackList={mediumTermTrackList} artistList={mediumTermArtistList} timeframe='medium_term'/>
         </CustomTabContainer>
         <CustomTabContainer value={value} index={2}>
-          <TrackAnalysisTab trackList={shortTermTrackList} timeframe='short_term'/>
+          <TrackAnalysisTab trackList={shortTermTrackList} artistList={shortTermArtistList} timeframe='short_term'/>
         </CustomTabContainer>
       </Box>
     );

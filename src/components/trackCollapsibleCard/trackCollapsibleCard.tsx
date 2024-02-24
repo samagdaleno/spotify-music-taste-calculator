@@ -1,8 +1,8 @@
 import React from "react";
-import { Box, Button, Card, CardActions, CardContent, CardMedia, ImageList, ImageListItem, ImageListItemBar, Stack, Typography } from "@mui/material";
+import { Box, Button, Card, CardActions, CardContent, Stack, Typography } from "@mui/material";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import TrackDetails from "../../interfaces/spotify/trackDetails";
-import energyImage from "../../resources/energy.png"
+// import energyImage from "../../resources/energy.png"
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -11,7 +11,7 @@ import './styles.css';
 
 import { Pagination } from 'swiper/modules';
 import Artist from "../../interfaces/spotify/artist";
-
+import TopArtistsSlide from "../topArtistsSlide/topArtistsSlide";
 
 export default function SwipeableStatCards({ trackDetails, artistList }: { trackDetails: TrackDetails; artistList: Artist[] }) { //TODO: RENAME THIS!!! 
 
@@ -22,7 +22,7 @@ export default function SwipeableStatCards({ trackDetails, artistList }: { track
                     <Card sx={{ backgroundColor: "#F30074", borderRadius: 4, height: "100%" }}>
                         <CardContent style={{ textAlign: 'center' }}>
                             <Typography>
-                                Your average stats
+                                Your songs&apos; mood:
                             </Typography>
                         </CardContent>
                         <CardContent>
@@ -48,46 +48,40 @@ export default function SwipeableStatCards({ trackDetails, artistList }: { track
                         </CardActions>
                     </Card>
                 </SwiperSlide>
-                <SwiperSlide>
+                {/* <SwiperSlide>
                     <Card sx={{ backgroundColor: "#F673C2", borderRadius: 4, maxWidth: "100%", height: "100%" }}>
                         <CardContent style={{ textAlign: 'center' }}>
                             <Typography>
                                 Your Top Artists
                             </Typography>
+                            <CardMedia sx={{ width: 150, height: 150 }} image={energyImage} />
+
+                            <CardMedia sx={{ width: 150, height: 150 }} image={energyImage} />
+
+                            <CardMedia sx={{ width: 150, height: 150 }} image={energyImage} />
                         </CardContent>
 
-                        <CardMedia
-                            sx={{ width: 200, height: 200 }}
-                            image={energyImage}
-                            title="green iguana"
-                        />
                         <CardActions>
                             <Button size="small">Share</Button>
                             <Button size="small">Learn More</Button>
                         </CardActions>
                     </Card>
-                </SwiperSlide>
+                </SwiperSlide> */}
                 <SwiperSlide>
-                    <Card sx={{ backgroundColor: "#465CBF", borderRadius: 4, height: "100%", maxWidth: "100%" }}>
+                    <Card sx={{ backgroundColor: "#6A00BA", borderRadius: 4, height: "100%", maxWidth: "100%" }}>
                         <CardContent style={{ textAlign: 'center' }}>
                             <Typography>
                                 Your Top Artists
                             </Typography>
-                        <Box sx={{ height: 350, overflowY: 'scroll' }}>
-                            <ImageList variant="masonry" cols={2} gap={5}>
-                                {artistList.map((item) => (
-                                    <ImageListItem key={item.id}>
-                                        <img
-                                            srcSet={`${item.imageUrl}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                                            src={`${item.imageUrl}?w=248&fit=crop&auto=format`}
-                                            alt={item.name}
-                                            loading="lazy"
-                                        />
-                                        <ImageListItemBar position="below" title={item.position + " - "+ item.name} />
-                                    </ImageListItem>
-                                ))}
-                            </ImageList>
-                        </Box>
+                            <br/>
+
+                            <TopArtistsSlide artistList={artistList} />
+                            {/* <Box sx={{ height: '100vw', overflowY: 'scroll' }}>
+                                <br/>
+                                    {artistList.map((artist) => (
+                                        <Typography  variant="h6" key={artist.id}> {artist.position} - {artist.name} </Typography>
+                                    ))}
+                            </Box> */}
                         </CardContent>
                     </Card>
                 </SwiperSlide>

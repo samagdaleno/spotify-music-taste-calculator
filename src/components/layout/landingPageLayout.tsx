@@ -5,27 +5,21 @@ import { getLSArtistsData, getLSTracksListData, getLSUserData } from "../../repo
 import './landingPageLayout.css';
 import TrackAnalysisTab from "../trackAnalysisTab/trackAnalysisTab";
 import Track from "../../interfaces/spotify/track";
+import Artist from "../../interfaces/spotify/artist";
 
 export default function LandingPageLayout() {
 
     const [selectedChip, setSelectedChip] = useState<number | null>(0);
     const [selectedTimeframe, setSelectedTimeframe] = useState<string>("short_term");
     const [selectedTrackList, setSelectedTrackList] = useState<Track[]>(getLSTracksListData("short_term"));
+    const [selectedArtistList, setSelectedArtistList] = useState<Artist[]>(getLSArtistsData("short_term"));
     const userData: UserData = getLSUserData();
-    // console.log(selectedTrackList);
-
-    const longTermArtistList = getLSArtistsData("long_term");
-    const mediumTermArtistList = getLSArtistsData("medium_term");
-    const shortTermArtistList = getLSArtistsData("short_term");
-
-    console.log(longTermArtistList);
-    console.log(mediumTermArtistList);
-    console.log(shortTermArtistList);
 
     const handleClick = (index: number, timeframe: string) => {
         setSelectedChip(index);
         setSelectedTimeframe(timeframe);
         setSelectedTrackList(getLSTracksListData(timeframe));
+        setSelectedArtistList(getLSArtistsData(timeframe));
     };
 
     return (
@@ -64,7 +58,7 @@ export default function LandingPageLayout() {
             </Stack>
             {/* <ArtistsAvatarList artists={longTermArtistList}/> */}
 
-            <TrackAnalysisTab trackList={selectedTrackList} timeframe={selectedTimeframe} />
+            <TrackAnalysisTab trackList={selectedTrackList} artistList={selectedArtistList} timeframe={selectedTimeframe} />
         </Box>
     );
 }

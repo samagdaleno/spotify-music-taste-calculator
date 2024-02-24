@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import LandingPageLayout from "../components/layout/landingPageLayout";
 
 function Home() {
+    // Check for expiration date if exists? 
     // eslint-disable-next-line
     const [accessToken, setAccessToken] = useState<string | null>(localStorage.getItem('access_token'));
 

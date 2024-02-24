@@ -2,52 +2,35 @@ import React, { useState, useEffect } from 'react';
 import TrackDetailsList from '../structure/trackDetailsList';
 import Track from '../../interfaces/spotify/track';
 import TrackDetails from '../../interfaces/spotify/trackDetails';
-// import TrackFeaturesPanel from '../showcase/trackFeaturesPanel';
-import { getAverageTrackFeatures, getSingleTrackFeaturesById } from '../../services/spotify.service';
-import StatAnalysisCard from '../trackAnalysisCard/analysisCard';
-import TrackCollapsibleCard from '../trackCollapsibleCard/trackCollapsibleCard';
-// import { time } from 'console';
+import { getAverageTrackFeatures } from '../../services/spotify.service';
+import SwipeableStatCards from '../trackCollapsibleCard/trackCollapsibleCard';
+import Artist from '../../interfaces/spotify/artist';
 
 
-export default function TrackAnalysisTab({ trackList, timeframe }: { trackList: Track[], timeframe: string }) {
-    const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null);
-    const [selectedTrackDetails, setSelectedTrackDetails] = useState<TrackDetails | null>(null);
+export default function TrackAnalysisTab({ trackList, artistList, timeframe }: { trackList: Track[], artistList: Artist[]; timeframe: string }) {
     const [averageStats, setAverageStats] = useState<TrackDetails | null>(null);
 
-    const handleTrackSelection = (trackId: string) => {
+    const handleTrackSelection = () => { // TODO: Delete this.
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        setSelectedTrackId(trackId);
+        // setSelectedTrackId(trackId);
     };
 
     useEffect(() => {
         const fetchAverageStats = async () => {
-            setSelectedTrackDetails(null);
-            const stats = await getAverageTrackFeatures(timeframe);
+            console.log(artistList);
+            const stats = getAverageTrackFeatures(timeframe);
             setAverageStats(stats);
         };
 
         fetchAverageStats();
     }, [timeframe]);
 
-    useEffect(() => {
-        const fetchSelectedTrackDetails = async () => {
-            if (selectedTrackId) {
-                const details = await getSingleTrackFeaturesById(selectedTrackId);
-                setSelectedTrackDetails(details);
-            }
-        };
-
-        fetchSelectedTrackDetails();
-    }, [selectedTrackId]);
-
     return (
         <div>
-            {selectedTrackDetails ? (
-                <StatAnalysisCard trackDetails={selectedTrackDetails} timeframe={timeframe} />
-            ) : (
-                averageStats && <TrackCollapsibleCard trackDetails={averageStats} />
-                // <StatAnalysisCard trackDetails={averageStats} timeframe={timeframe} />
+            {(
+                averageStats && <SwipeableStatCards trackDetails={averageStats} artistList={artistList} />
             )}
+            {/* TODO: onSelect is not being used but stays as an example for the time being */}
             <TrackDetailsList trackList={trackList} onSelect={handleTrackSelection} />
         </div>
     );

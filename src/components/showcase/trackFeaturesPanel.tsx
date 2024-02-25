@@ -72,9 +72,7 @@ const style = {
     p: 4,
 };
 
-// TODO: Maybe consider using sliders ?? 
 export default function TrackFeaturesPanel({ trackDetails }: { trackDetails: TrackDetails }) {
-    // console.log(trackDetails);
     const [open, setOpen] = React.useState(false);
     const [modalContent, setModalContent] = React.useState<ModalContent>({
         title: 'Default Title',

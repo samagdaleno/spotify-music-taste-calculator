@@ -29,8 +29,8 @@ function CustomColumnMenu(props: GridColumnMenuProps) {
 
 
 
-export default function DataTable() { // TODO: Maybe pass in the time range as a prop
-  const rows = getLSTracksListData("short_term"); // TODO: move this to a service
+export default function DataTable() {
+  const rows = getLSTracksListData("short_term");
   // const averageStats = getAverageTrackFeatures("short_term")
   // const trackList = getLSTracksListData("short_term")
   const [rowSelectionModel, setRowSelectionModel] = React.useState<GridRowSelectionModel>([]);

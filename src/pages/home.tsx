@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import Button from '@mui/material/Button';
 import { getRefreshedToken } from "../services/token.service";
 import { Box, CssBaseline, Typography } from "@mui/material";
-// import HomePageTabber from "../components/structure/homePageTabber";
 import { Link } from "react-router-dom";
 import LandingPageLayout from "../components/layout/landingPageLayout";
 
 function Home() {
-    // Check for expiration date if exists? 
-    // eslint-disable-next-line
-    const [accessToken, setAccessToken] = useState<string | null>(localStorage.getItem('access_token'));
+    // TODO: Review the need of use state on this var.
+    const [accessToken] = useState<string | null>(localStorage.getItem('access_token'));
 
     return (
         <div>

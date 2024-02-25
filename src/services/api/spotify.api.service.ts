@@ -41,7 +41,6 @@ export const getTopTracks = async (timeRange: string): Promise<any> => {
     }
 };
 
-// TODO: Review disabled eslint rules
 //eslint-disable-next-line
 export const getTopArtists = async (timeRange: string): Promise<any> => {
     try {

@@ -1,8 +1,8 @@
 import React from "react";
-import { Box, Button, Card, CardActions, CardContent, Stack, Typography } from "@mui/material";
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Stack, Typography } from "@mui/material";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import TrackDetails from "../../interfaces/spotify/trackDetails";
-// import energyImage from "../../resources/energy.png"
+import energyImage from "../../resources/energy.png"
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -48,7 +48,7 @@ export default function SwipeableStatCards({ trackDetails, artistList }: { track
                         </CardActions>
                     </Card>
                 </SwiperSlide>
-                {/* <SwiperSlide>
+                <SwiperSlide>
                     <Card sx={{ backgroundColor: "#F673C2", borderRadius: 4, maxWidth: "100%", height: "100%" }}>
                         <CardContent style={{ textAlign: 'center' }}>
                             <Typography>
@@ -66,7 +66,7 @@ export default function SwipeableStatCards({ trackDetails, artistList }: { track
                             <Button size="small">Learn More</Button>
                         </CardActions>
                     </Card>
-                </SwiperSlide> */}
+                </SwiperSlide>
                 <SwiperSlide>
                     <Card sx={{ backgroundColor: "#6A00BA", borderRadius: 4, height: "100%", maxWidth: "100%" }}>
                         <CardContent style={{ textAlign: 'center' }}>
@@ -76,12 +76,6 @@ export default function SwipeableStatCards({ trackDetails, artistList }: { track
                             <br/>
 
                             <TopArtistsSlide artistList={artistList} />
-                            {/* <Box sx={{ height: '100vw', overflowY: 'scroll' }}>
-                                <br/>
-                                    {artistList.map((artist) => (
-                                        <Typography  variant="h6" key={artist.id}> {artist.position} - {artist.name} </Typography>
-                                    ))}
-                            </Box> */}
                         </CardContent>
                     </Card>
                 </SwiperSlide>

@@ -28,11 +28,9 @@ const BorderLinearProgress = styled(LinearProgress, {
 }));
 
 
-// eslint-disable-next-line
-export default function TrackDetailsCard({ track, onSelect }: { track: Track; onSelect: (trackId: string) => void }) {
+export default function TrackDetailsCard({ track }: { track: Track; }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedTrackDetails, setSelectedTrackDetails] = useState<TrackDetails | null>(null);
-  // let trackDetails: TrackDetails;
 
   // useEffect to fetch track details when component is mounted
   useEffect(() => {
@@ -68,7 +66,6 @@ export default function TrackDetailsCard({ track, onSelect }: { track: Track; on
           </CardContent>
         </CardActionArea>
         <Collapse in={isExpanded} timeout="auto" unmountOnExit>
-          {/* Add your track features here */}
           <Stack>
             <Stack sx={{ display: 'flex', margin: "3%" }} direction="row" spacing={{ xs: 1, sm: 2 }} >
               <Typography variant="subtitle2" color="text.secondary" sx={{ width: "60%" }}>

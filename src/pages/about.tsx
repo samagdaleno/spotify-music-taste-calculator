@@ -2,7 +2,7 @@ import { Typography } from '@mui/material';
 import React from 'react';
 import DataTable from '../components/structure/tableTest';
 import TopArtistsList from '../components/topArtistsList/topArtistList';
-import CollapsibleTable from '../components/trackCollapsibleCard/collapsibleTable';
+import CollapsibleTable from '../components/swipeableStatCards/collapsibleTable';
 // import ButtonBaseDemo from '../components/imageButton';
 
 const About: React.FC = () => {
